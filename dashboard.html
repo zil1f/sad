@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            transition: background 0.3s ease;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: #007bff;
+            padding: 20px;
+            color: white;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+        }
+
+        .sidebar a, .logout-btn, .delete-account-btn {
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .sidebar a:hover {
+            background: #0056b3;
+        }
+
+        .logout-btn {
+            background: red;
+        }
+
+        .logout-btn:hover {
+            background: darkred;
+        }
+
+        .delete-account-btn {
+            background: black;
+        }
+
+        .delete-account-btn:hover {
+            background: darkgray;
+        }
+
+        /* Tombol Close Sidebar */
+        .close-sidebar {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-sidebar:hover {
+            background: darkred;
+        }
+
+        /* Konten utama */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 400px;
+        }
+
+        .profile-card img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid #007bff;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .edit-btn, .bg-btn, .upload-btn {
+            background: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .edit-btn:hover, .bg-btn:hover, .upload-btn:hover {
+            background: #0056b3;
+        }
+
+        /* Toggle Sidebar */
+        .sidebar-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1100;
+        }
+
+        .sidebar-toggle:hover {
+            background: #0056b3;
+        }
+
+        .hide-sidebar {
+            transform: translateX(-100%);
+        }
+
+        .expand-content {
+            margin-left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tombol untuk toggle sidebar -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-sidebar" onclick="toggleSidebar()">X</button>
+        <h2>Dashboard</h2>
+        <a href="#">Beranda</a>
+        <a href="#">Pengaturan</a>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <button class="delete-account-btn" onclick="deleteAccount()">Hapus Akun</button>
+    </div>
+
+    <!-- Konten Utama -->
+    <div class="main-content" id="mainContent">
+        <div class="profile-card">
+            <img src="https://via.placeholder.com/70" alt="Foto Profil" id="profilePic">
+            <div class="profile-info">
+                <h3 id="username">User</h3>
+                <button class="edit-btn" onclick="editProfile()">Edit Profil</button>
+                <button class="bg-btn" onclick="changeBackground()">Ubah Background</button>
+                <input type="file" id="uploadPhoto" accept="image/*" style="display: none;" onchange="uploadProfilePicture(event)">
+                <button class="upload-btn" onclick="document.getElementById('uploadPhoto').click();">Upload Foto</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk toggle sidebar
+        function toggleSidebar() {
+            let sidebar = document.getElementById("sidebar");
+            let mainContent = document.getElementById("mainContent");
+            
+            if (sidebar.classList.contains("hide-sidebar")) {
+                sidebar.classList.remove("hide-sidebar");
+                mainContent.classList.remove("expand-content");
+            } else {
+                sidebar.classList.add("hide-sidebar");
+                mainContent.classList.add("expand-content");
+            }
+        }
+
+        // Fungsi untuk edit username
+        function editProfile() {
+            let newUsername = prompt("Masukkan username baru:");
+            if (newUsername) {
+                document.getElementById("username").textContent = newUsername;
+                localStorage.setItem("username", newUsername);
+            }
+        }
+
+        // Fungsi untuk mengganti background
+        function changeBackground() {
+            let bgURL = prompt("Masukkan URL gambar untuk background:");
+            if (bgURL) {
+                document.body.style.backgroundImage = `url('${bgURL}')`;
+                document.body.style.backgroundSize = "cover";
+                document.body.style.backgroundPosition = "center";
+                localStorage.setItem("background", bgURL);
+            }
+        }
+
+        // Fungsi untuk upload dan menyimpan foto profil
+        function uploadProfilePicture(event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("profilePic").src = e.target.result;
+                    localStorage.setItem("profilePicture", e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Fungsi Logout
+        function logout() {
+            window.location.href = "index.html"; // Ganti dengan halaman login
+        }
+
+        // Fungsi Hapus Akun
+        function deleteAccount() {
+            if (confirm("Apakah Anda yakin ingin menghapus akun? Data tidak bisa dikembalikan!")) {
+                localStorage.removeItem("profilePic");
+                localStorage.removeItem("username");
+                localStorage.removeItem("background");
+
+                window.location.href = "index.html"; // Redirect ke halaman login
+            }
+        }
+
+        // Load data dari localStorage saat halaman dibuka
+        window.onload = function() {
+            let savedUsername = localStorage.getItem("username");
+            let savedBackground = localStorage.getItem("background");
+            let savedProfilePicture = localStorage.getItem("profilePicture");
+
+            if (savedUsername) {
+                document.getElementById("username").textContent = savedUsername;
+            }
+
+            if (savedBackground) {
+                document.body.style.backgroundImage = `url('${savedBackground}')`;
+                document.body.style.backgroundSize = "cover";
+                document.body.style.backgroundPosition = "center";
+            }
+
+            if (savedProfilePicture) {
+                document.getElementById("profilePic").src = savedProfilePicture;
+            }
+        };
+    </script>
+
+</body>
+</html>

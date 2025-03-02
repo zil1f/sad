@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body {
+            background: url('https://files.catbox.moe/dz7jjg.jpg') no-repeat center center/cover;
+            height: 100vh; display: flex; justify-content: center; align-items: center; flex-direction: column;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px); padding: 20px; border-radius: 10px;
+            width: 300px; text-align: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .container h2 { color: white; margin-bottom: 20px; }
+        .input-box {
+            margin-bottom: 15px; position: relative;
+        }
+        .input-box input {
+            width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;
+        }
+        .toggle-btn {
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+            cursor: pointer; font-size: 14px; color: black;
+        }
+        .btn {
+            background: #007bff; color: white; padding: 10px; border: none; border-radius: 5px;
+            cursor: pointer; width: 100%; font-size: 16px; margin-top: 10px;
+            opacity: 0.5; pointer-events: none;
+        }
+        .btn.active {
+            opacity: 1; pointer-events: auto;
+        }
+        .btn:hover { background: #0056b3; }
+        .error-message { color: red; font-size: 14px; margin-top: 10px; display: none; }
+        .switch { color: white; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Daftar</h2>
+        <form id="register-form">
+            <div class="input-box">
+                <input type="text" id="register-username" placeholder="Username" required oninput="checkRegisterInput()">
+            </div>
+            <div class="input-box">
+                <input type="email" id="register-email" placeholder="Email atau Nomor Telepon" required oninput="checkRegisterInput()">
+            </div>
+            <div class="input-box">
+                <input type="password" id="register-password" placeholder="Password" required oninput="checkRegisterInput()">
+                <span class="toggle-btn" onclick="toggleVisibility('register-password')">👁️</span>
+            </div>
+            <button type="button" class="btn" onclick="register()" id="register-btn">Daftar</button>
+            <p class="error-message" id="error-msg"></p>
+            <p class="switch" onclick="window.location.href='index.html'">Sudah punya akun? Masuk</p>
+        </form>
+    </div>
+
+    <script>
+        function checkRegisterInput() {
+            let username = document.getElementById("register-username").value;
+            let email = document.getElementById("register-email").value;
+            let password = document.getElementById("register-password").value;
+            let registerBtn = document.getElementById("register-btn");
+
+            if (username.trim() !== "" && email.trim() !== "" && password.trim() !== "") {
+                registerBtn.classList.add("active");
+            } else {
+                registerBtn.classList.remove("active");
+            }
+        }
+
+        function register() {
+            let usernameInput = document.getElementById("register-username");
+            let emailInput = document.getElementById("register-email");
+            let passwordInput = document.getElementById("register-password");
+            let errorMsg = document.getElementById("error-msg");
+
+            let storedUser = localStorage.getItem("user");
+
+            if (storedUser) {
+                let userData = JSON.parse(storedUser);
+                if (usernameInput.value === userData.username) {
+                    errorMsg.innerText = "Username sudah terdaftar!";
+                    errorMsg.style.display = "block";
+                    return;
+                }
+            }
+
+            if (usernameInput.value && emailInput.value && passwordInput.value) {
+                let newUser = {
+                    username: usernameInput.value,
+                    email: emailInput.value,
+                    password: passwordInput.value
+                };
+
+                localStorage.setItem("user", JSON.stringify(newUser));
+                alert("Registrasi Berhasil! Silakan login.");
+                window.location.href = "index.html";
+            } else {
+                errorMsg.innerText = "Harap isi semua data!";
+                errorMsg.style.display = "block";
+            }
+        }
+
+        function toggleVisibility(id) {
+            let inputField = document.getElementById(id);
+            inputField.type = (inputField.type === "password") ? "text" : "password";
+        }
+    </script>
+
+</body>
+</html>

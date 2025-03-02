@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syarat & Ketentuan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: url('https://files.catbox.moe/dz7jjg.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in-out;
+            color: white;
+            position: relative;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Garis bergerak mengelilingi teks */
+        h2::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid yellow;
+            border-radius: 10px;
+            animation: borderMove 3s linear infinite;
+        }
+
+        @keyframes borderMove {
+            0% { clip-path: inset(0% 100% 0% 0%); }
+            25% { clip-path: inset(0% 0% 0% 0%); }
+            50% { clip-path: inset(0% 0% 100% 0%); }
+            75% { clip-path: inset(0% 0% 0% 100%); }
+            100% { clip-path: inset(0% 100% 0% 0%); }
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .back-btn {
+            margin-top: 15px;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #0056b3;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Syarat & Ketentuan</h2>
+        <p>Halo! Kami mempunyai aturan dan syarat, jadi jika Anda ingin mengakses aplikasi kami berarti Anda setuju dengan syarat dan ketentuan kami:</p>
+        <p>1. Tidak boleh melakukan Bucin.</p>
+        <p>2. Tidak boleh pacaran.</p>
+        <p>3. Tidak boleh mengambil lia.</p>
+        <button class="back-btn" onclick="goBack()">Kembali</button>
+    </div>
+
+    <button class="music-btn" onclick="toggleMusic()">🎵</button>
+    <audio id="bg-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-creativeminds.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function toggleMusic() {
+            let music = document.getElementById("bg-music");
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+    </script>
+
+</body>
+</html>
