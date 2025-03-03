@@ -34,84 +34,104 @@
         .btn.active {
             opacity: 1; pointer-events: auto;
         }
-        .btn:hover { background: #0056b3; }
+        .btn:hover:not(:disabled) { background: #0056b3; }
         .error-message { color: red; font-size: 14px; margin-top: 10px; display: none; }
         .switch { color: white; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+        .checkbox-container {
+            margin-bottom: 10px; color: white; text-align: left;
+        }
+        .checkbox-container a {
+            color: #007bff; text-decoration: none;
+        }
+        .checkbox-container a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>Daftar</h2>
-        <form id="register-form">
-            <div class="input-box">
-                <input type="text" id="register-username" placeholder="Username" required oninput="checkRegisterInput()">
-            </div>
-            <div class="input-box">
-                <input type="email" id="register-email" placeholder="Email atau Nomor Telepon" required oninput="checkRegisterInput()">
-            </div>
-            <div class="input-box">
-                <input type="password" id="register-password" placeholder="Password" required oninput="checkRegisterInput()">
-                <span class="toggle-btn" onclick="toggleVisibility('register-password')">👁️</span>
-            </div>
-            <button type="button" class="btn" onclick="register()" id="register-btn">Daftar</button>
-            <p class="error-message" id="error-msg"></p>
-            <p class="switch" onclick="window.location.href='index.html'">Sudah punya akun? Masuk</p>
-        </form>
-    </div>
+<div class="container">
+    <h2>Daftar</h2>
+    <form id="register-form">
+        <div class="input-box">
+            <input type="text" id="register-username" placeholder="Username" required oninput="checkRegisterInput()">
+        </div>
+        <div class="input-box">
+            <input type="email" id="register-email" placeholder="Email atau Nomor Telepon" required oninput="checkRegisterInput()">
+        </div>
+        <div class="input-box">
+            <input type="password" id="register-password" placeholder="Password" required oninput="checkRegisterInput()">
+            <span class="toggle-btn" onclick="toggleVisibility('register-password')">👁</span>
+        </div>
 
-    <script>
-        function checkRegisterInput() {
-            let username = document.getElementById("register-username").value;
-            let email = document.getElementById("register-email").value;
-            let password = document.getElementById("register-password").value;
-            let registerBtn = document.getElementById("register-btn");
+        <!-- Checkbox Syarat & Ketentuan -->
+        <div class="checkbox-container">
+            <input type="checkbox" id="agreeTerms" onclick="checkRegisterInput()">
+            <label for="agreeTerms">
+                Saya setuju dengan 
+                <a href="syarat.html" target="_blank">Syarat dan Ketentuan</a>
+            </label>
+        </div>
 
-            if (username.trim() !== "" && email.trim() !== "" && password.trim() !== "") {
-                registerBtn.classList.add("active");
-            } else {
-                registerBtn.classList.remove("active");
-            }
+        <button type="button" class="btn" onclick="register()" id="register-btn">Daftar</button>
+        <p class="error-message" id="error-msg"></p>
+        <p class="switch" onclick="window.location.href='index.html'">Sudah punya akun? Masuk</p>
+    </form>
+</div>
+
+<script>
+    function checkRegisterInput() {
+        let username = document.getElementById("register-username").value;
+        let email = document.getElementById("register-email").value;
+        let password = document.getElementById("register-password").value;
+        let agreeTerms = document.getElementById("agreeTerms").checked;
+        let registerBtn = document.getElementById("register-btn");
+
+        if (username.trim() !== "" && email.trim() !== "" && password.trim() !== "" && agreeTerms) {
+            registerBtn.classList.add("active");
+        } else {
+            registerBtn.classList.remove("active");
         }
+    }
 
-        function register() {
-            let usernameInput = document.getElementById("register-username");
-            let emailInput = document.getElementById("register-email");
-            let passwordInput = document.getElementById("register-password");
-            let errorMsg = document.getElementById("error-msg");
+    function register() {
+        let usernameInput = document.getElementById("register-username");
+        let emailInput = document.getElementById("register-email");
+        let passwordInput = document.getElementById("register-password");
+        let errorMsg = document.getElementById("error-msg");
 
-            let storedUser = localStorage.getItem("user");
+        let storedUser = localStorage.getItem("user");
 
-            if (storedUser) {
-                let userData = JSON.parse(storedUser);
-                if (usernameInput.value === userData.username) {
-                    errorMsg.innerText = "Username sudah terdaftar!";
-                    errorMsg.style.display = "block";
-                    return;
-                }
-            }
-
-            if (usernameInput.value && emailInput.value && passwordInput.value) {
-                let newUser = {
-                    username: usernameInput.value,
-                    email: emailInput.value,
-                    password: passwordInput.value
-                };
-
-                localStorage.setItem("user", JSON.stringify(newUser));
-                alert("Registrasi Berhasil! Silakan login.");
-                window.location.href = "index.html";
-            } else {
-                errorMsg.innerText = "Harap isi semua data!";
+        if (storedUser) {
+            let userData = JSON.parse(storedUser);
+            if (usernameInput.value === userData.username) {
+                errorMsg.innerText = "Username sudah terdaftar!";
                 errorMsg.style.display = "block";
+                return;
             }
         }
 
-        function toggleVisibility(id) {
-            let inputField = document.getElementById(id);
-            inputField.type = (inputField.type === "password") ? "text" : "password";
+        if (usernameInput.value && emailInput.value && passwordInput.value) {
+            let newUser = {
+                username: usernameInput.value,
+                email: emailInput.value,
+                password: passwordInput.value
+            };
+
+            localStorage.setItem("user", JSON.stringify(newUser));
+            alert("Registrasi Berhasil! Silakan login.");
+            window.location.href = "index.html";
+        } else {
+            errorMsg.innerText = "Harap isi semua data!";
+            errorMsg.style.display = "block";
         }
-    </script>
+    }
+
+    function toggleVisibility(id) {
+        let inputField = document.getElementById(id);
+        inputField.type = (inputField.type === "password") ? "text" : "password";
+    }
+</script>
 
 </body>
 </html>
