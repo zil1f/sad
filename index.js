@@ -18,7 +18,7 @@ function login() {
   let errorMsg = document.getElementById("error-msg");
   let loginBtn = document.getElementById("login-btn");
 
-  let storedUser = localStorage.getItem("user");
+  let storedUser = localStorage.setItem("user");
 
 
   if (!storedUser) {
