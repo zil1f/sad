@@ -18,7 +18,7 @@ function register() {
     let passwordInput = document.getElementById("register-password");
     let errorMsg = document.getElementById("error-msg");
 
-    let storedUser = localStorage.setItem("user");
+    let storedUser = localStorage.getItem("user");
 
     if (storedUser) {
         let userData = JSON.parse(storedUser);
@@ -36,7 +36,7 @@ function register() {
             password: passwordInput.value
         };
 
-        localStorage.getItem("user", JSON.stringify(newUser));
+        localStorage.setItem("user", JSON.stringify(newUser));
         alert("Registrasi Berhasil! Silakan login.");
         window.location.href = "index.html";
     } else {
