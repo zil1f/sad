@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
 
-    <!-- Tombol untuk toggle sidebar -->
-   <button class="sidebar-toggle" onclick="toggleSidebar()" id="toggleBtn">☰</button>
+  <!-- Tombol toggle sidebar -->
+  <button class="sidebar-toggle" onclick="toggleSidebar()" id="toggleBtn">☰</button>
 
-    <!-- Sidebar -->
-    <div class="sidebar hide-sidebar" id="sidebar">
-        <button class="close-sidebar" onclick="toggleSidebar()">X</button>
-        <h2>Set</h2>
-        <a href="#">Home</a>
-        <a href="#">Settings</a>
-        <button class="logout-btn" onclick="logout()">Logout</button>
-        <button class="delete-account-btn" onclick="deleteAccount()">Delate Account</button>
+  <!-- Sidebar -->
+  <div class="sidebar hide-sidebar" id="sidebar">
+    <button class="close-sidebar" onclick="toggleSidebar()">X</button>
+    <h2>Set</h2>
+    <a href="#">Home</a>
+    <a href="#">Settings</a>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+    <button class="delete-account-btn" onclick="deleteAccount()">Delete Account</button>
+  </div>
+
+  <!-- Konten Utama -->
+  <div class="main-content expand-content" id="mainContent">
+    <div class="profile-card">
+      <img src="https://via.placeholder.com/70" alt="Foto Profil" id="profilePic">
+      <div class="profile-info">
+        <h3 id="username">User</h3>
+        <button class="bg-btn" onclick="changeBackground()">Change Background</button>
+        <input type="file" id="uploadPhoto" accept="image/*" style="display: none;" onchange="uploadProfilePicture(event)">
+        <button class="upload-btn" onclick="document.getElementById('uploadPhoto').click();">Change Picture</button>
+      </div>
     </div>
+  </div>
 
-    <!-- Konten Utama -->
-    <div class="main-content" id="mainContent">
-        <div class="profile-card">
-            <img src="https://via.placeholder.com/70" alt="Foto Profil" id="profilePic">
-            <div class="profile-info">
-                <h3 id="username">User</h3>
-                <button class="bg-btn" onclick="changeBackground()">Change Background</button>
-                <input type="file" id="uploadPhoto" accept="image/*" style="display: none;" onchange="uploadProfilePicture(event)">
-                <button class="upload-btn" onclick="document.getElementById('uploadPhoto').click();">Change Picture</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="dashboard.js"></script>
+  <script src="js/dashboard.js"></script>
 </body>
 </html>
