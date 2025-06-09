@@ -18,7 +18,8 @@ function login() {
   let errorMsg = document.getElementById("error-msg");
   let loginBtn = document.getElementById("login-btn");
 
-  let storedUser = localStorage.getItem("user");
+  let storedUser = localStorage.setItem("user", JSON.stringify({ username: "test", password: "1234" }));
+
 
   if (!storedUser) {
     errorMsg.innerText = "Tidak ada akun terdaftar!";
