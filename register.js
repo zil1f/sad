@@ -36,7 +36,7 @@ function register() {
             password: passwordInput.value
         };
 
-        localStorage.setItem("user", JSON.stringify(newUser));
+        localStorage.getItem("user", JSON.stringify(newUser));
         alert("Registrasi Berhasil! Silakan login.");
         window.location.href = "index.html";
     } else {
