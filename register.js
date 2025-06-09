@@ -18,7 +18,7 @@ function register() {
     let passwordInput = document.getElementById("register-password");
     let errorMsg = document.getElementById("error-msg");
 
-    let storedUser = localStorage.getItem("user");
+    let storedUser = localStorage.setItem("user");
 
     if (storedUser) {
         let userData = JSON.parse(storedUser);
