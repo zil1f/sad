@@ -2,13 +2,18 @@
 function toggleSidebar() {
     let sidebar = document.getElementById("sidebar");
     let mainContent = document.getElementById("mainContent");
+    let toggleBtn = document.getElementById("toggleBtn");
 
     if (sidebar.classList.contains("hide-sidebar")) {
+        // Buka sidebar
         sidebar.classList.remove("hide-sidebar");
         mainContent.classList.remove("expand-content");
+        toggleBtn.style.display = "none"; // Sembunyikan tombol ☰
     } else {
+        // Tutup sidebar
         sidebar.classList.add("hide-sidebar");
         mainContent.classList.add("expand-content");
+        toggleBtn.style.display = "block"; // Tampilkan tombol ☰
     }
 }
 
