@@ -169,11 +169,11 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <button class="close-sidebar" onclick="toggleSidebar()">X</button>
-        <h2>Dweeashboard</h2>
-        <a href="#">Beranda</a>
+        <h2>Set</h2>
+        <a href="#">Home</a>
         <a href="#">Settings</a>
         <button class="logout-btn" onclick="logout()">Logout</button>
-        <button class="delete-account-btn" onclick="deleteAccount()">Hapus Akun</button>
+        <button class="delete-account-btn" onclick="deleteAccount()">Delate Account</button>
     </div>
 
     <!-- Konten Utama -->
@@ -182,10 +182,9 @@
             <img src="https://via.placeholder.com/70" alt="Foto Profil" id="profilePic">
             <div class="profile-info">
                 <h3 id="username">User</h3>
-                <button class="edit-btn" onclick="editProfile()">Edit Profil</button>
-                <button class="bg-btn" onclick="changeBackground()">Ubah Background</button>
+                <button class="bg-btn" onclick="changeBackground()">Change Background</button>
                 <input type="file" id="uploadPhoto" accept="image/*" style="display: none;" onchange="uploadProfilePicture(event)">
-                <button class="upload-btn" onclick="document.getElementById('uploadPhoto').click();">Upload Foto</button>
+                <button class="upload-btn" onclick="document.getElementById('uploadPhoto').click();">Change Picture</button>
             </div>
         </div>
     </div>
