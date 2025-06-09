@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    transition: background 0.3s ease;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #007bff;
+    padding: 20px;
+    color: white;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+}
+
+.sidebar a,
+.logout-btn,
+.delete-account-btn {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.sidebar a:hover {
+    background: #0056b3;
+}
+
+.logout-btn {
+    background: red;
+}
+
+.logout-btn:hover {
+    background: darkred;
+}
+
+.delete-account-btn {
+    background: black;
+}
+
+.delete-account-btn:hover {
+    background: darkgray;
+}
+
+/* Tombol Close Sidebar */
+.close-sidebar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-sidebar:hover {
+    background: darkred;
+}
+
+/* Konten utama */
+.main-content {
+    flex: 1;
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.profile-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 400px;
+}
+
+.profile-card img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.edit-btn,
+.bg-btn,
+.upload-btn {
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.edit-btn:hover,
+.bg-btn:hover,
+.upload-btn:hover {
+    background: #0056b3;
+}
+
+/* Toggle Sidebar */
+.sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1100;
+}
+
+.sidebar-toggle:hover {
+    background: #0056b3;
+}
+
+.hide-sidebar {
+    transform: translateX(-100%);
+}
+
+.expand-content {
+    margin-left: 0;
+}
