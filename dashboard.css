@@ -134,17 +134,17 @@ body {
 
 /* Toggle Sidebar */
 .sidebar-toggle {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    z-index: 1100;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1100;
 }
 
 .sidebar-toggle:hover {
