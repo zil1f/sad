@@ -12,22 +12,22 @@
   <button class="sidebar-toggle" onclick="toggleSidebar()" id="toggleBtn">☰</button>
 
   <!-- Sidebar -->
- <div class="sidebar hide-sidebar" id="sidebar">
-  <button class="close-sidebar" onclick="toggleSidebar()">X</button>
-  <h2>Set</h2>
-  <a href="#">Home</a>
+<div class="sidebar hide-sidebar" id="sidebar">
+  <button class="close-sidebar" onclick="toggleSidebar()">✖</button>
+  <h2 class="sidebar-title">☰ Menu</h2>
 
-  <!-- Settings menu with dropdown -->
+  <a href="#"><span class="menu-icon">🏠</span> Home</a>
+
   <div class="sidebar-group">
-    <a href="#" onclick="toggleSubmenu(event)">Settings</a>
+    <a href="#" onclick="toggleSubmenu(event)"><span class="menu-icon">⚙️</span> Settings</a>
     <div class="submenu" id="settings-submenu">
-      <a href="#" onclick="changeEmail()">Ganti Email</a>
-      <a href="#" onclick="resetPassword()">Reset Sandi</a>
+      <a href="#" onclick="changeEmail()">✉️ Ganti Email</a>
+      <a href="#" onclick="resetPassword()">🔒 Reset Sandi</a>
     </div>
   </div>
 
-  <button class="logout-btn" onclick="logout()">Logout</button>
-  <button class="delete-account-btn" onclick="deleteAccount()">Delete Account</button>
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  <button class="delete-account-btn" onclick="deleteAccount()">🗑️ Delete Account</button>
 </div>
 
 
