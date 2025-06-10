@@ -49,3 +49,8 @@ function toggleVisibility(id) {
     let inputField = document.getElementById(id);
     inputField.type = (inputField.type === "password") ? "text" : "password";
 }
+
+document.getElementById("register-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  register();
+});
