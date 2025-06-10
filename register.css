@@ -1,105 +1,122 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 body {
-    background: url('https://files.catbox.moe/dz7jjg.jpg') no-repeat center center/cover;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  background: url('https://files.catbox.moe/dz7jjg.jpg') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .container h2 {
-    color: white;
-    margin-bottom: 20px;
+  color: white;
+  margin-bottom: 20px;
 }
 
 .input-box {
-    margin-bottom: 15px;
-    position: relative;
+  margin-bottom: 15px;
+  position: relative;
 }
 
 .input-box input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 .toggle-btn {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 14px;
-    color: black;
-}
-
-.btn {
-    background: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-    margin-top: 10px;
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-.btn.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.btn:hover:not(:disabled) {
-    background: #0056b3;
-}
-
-.error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-    display: none;
-}
-
-.switch {
-    color: white;
-    margin-top: 10px;
-    cursor: pointer;
-    text-decoration: underline;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 14px;
+  color: black;
 }
 
 .checkbox-container {
-    margin-bottom: 10px;
-    color: white;
-    text-align: left;
+  margin-bottom: 10px;
+  color: white;
+  text-align: left;
+  font-size: 14px;
 }
 
 .checkbox-container a {
-    color: #007bff;
-    text-decoration: none;
+  color: #007bff;
+  text-decoration: none;
 }
 
 .checkbox-container a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+.btn {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  opacity: 0.5;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.btn.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.btn:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.switch {
+  color: white;
+  margin-top: 10px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #007bff;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
 }
