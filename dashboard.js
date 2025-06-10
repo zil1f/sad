@@ -50,9 +50,14 @@ function logout() {
 
 function deleteAccount() {
   if (confirm("Apakah Anda yakin ingin menghapus akun? Data tidak bisa dikembalikan!")) {
-    localStorage.removeItem("profilePic");
-    localStorage.removeItem("username");
+    // Hapus semua data akun
+    localStorage.removeItem("user");          // akun login
+    localStorage.removeItem("username");      // tampilan
+    localStorage.removeItem("profilePicture");
     localStorage.removeItem("background");
+    localStorage.removeItem("isLoggedIn");
+
+    alert("Akun berhasil dihapus.");
     window.location.href = "index.html";
   }
 }
