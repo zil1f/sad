@@ -1,61 +1,83 @@
 function checkRegisterInput() {
-    let username = document.getElementById("register-username").value;
-    let email = document.getElementById("register-email").value;
-    let password = document.getElementById("register-password").value;
-    let agreeTerms = document.getElementById("agreeTerms").checked;
-    let registerBtn = document.getElementById("register-btn");
+  let username = document.getElementById("register-username").value.trim();
+  let email = document.getElementById("register-email").value.trim();
+  let password = document.getElementById("register-password").value.trim();
+  let agreeTerms = document.getElementById("agreeTerms").checked;
+  let registerBtn = document.getElementById("register-btn");
 
-    if (username.trim() !== "" && email.trim() !== "" && password.trim() !== "" && agreeTerms) {
-        registerBtn.classList.add("active");
-    } else {
-        registerBtn.classList.remove("active");
-    }
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isEmailValid = emailPattern.test(email);
+  const isPasswordValid = password.length >= 6;
+
+  if (username && isEmailValid && isPasswordValid && agreeTerms) {
+    registerBtn.classList.add("active");
+    registerBtn.disabled = false;
+  } else {
+    registerBtn.classList.remove("active");
+    registerBtn.disabled = true;
+  }
 }
 
 function register() {
-    let usernameInput = document.getElementById("register-username");
-    let emailInput = document.getElementById("register-email");
-    let passwordInput = document.getElementById("register-password");
-    let errorMsg = document.getElementById("error-msg");
+  let usernameInput = document.getElementById("register-username");
+  let emailInput = document.getElementById("register-email");
+  let passwordInput = document.getElementById("register-password");
 
-    let storedUser = localStorage.getItem("user");
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (storedUser) {
-        let userData = JSON.parse(storedUser);
-        if (usernameInput.value === userData.username) {
-            errorMsg.innerText = "Username sudah terdaftar!";
-            errorMsg.style.display = "block";
-            return;
-        }
+  // Validasi format email
+  if (!emailPattern.test(email)) {
+    showToast("Format email tidak valid!", false);
+    return;
+  }
+
+  // Validasi panjang password
+  if (password.length < 6) {
+    showToast("Password minimal 6 karakter!", false);
+    return;
+  }
+
+  // Cek username sudah ada
+  let storedUser = localStorage.getItem("user");
+  if (storedUser) {
+    let userData = JSON.parse(storedUser);
+    if (usernameInput.value === userData.username) {
+      showToast("Username sudah terdaftar!", false);
+      return;
     }
+  }
 
-    if (usernameInput.value && emailInput.value && passwordInput.value) {
-        let newUser = {
-            username: usernameInput.value,
-            email: emailInput.value,
-            password: passwordInput.value
-        };
+  // Simpan data
+  let newUser = {
+    username: usernameInput.value.trim(),
+    email: email,
+    password: password
+  };
 
-        localStorage.setItem("user", JSON.stringify(newUser));
-        alert("Registrasi Berhasil! Silakan login.");
-        window.location.href = "index.html";
-    } else {
-        errorMsg.innerText = "Harap isi semua data!";
-        errorMsg.style.display = "block";
-    }
+  localStorage.setItem("user", JSON.stringify(newUser));
+  showToast("Registrasi berhasil! Mengalihkan ke login...", true);
+
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 2000);
 }
 
-function toggleVisibility(id) {
-    let inputField = document.getElementById(id);
-    inputField.type = (inputField.type === "password") ? "text" : "password";
+// Notifikasi elegan
+function showToast(message, success = true) {
+  const toast = document.getElementById("toast");
+  toast.innerText = message;
+  toast.style.background = success ? "#28a745" : "#dc3545";
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
 }
 
-document.getElementById("register-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-  register();
-});
-
-document.getElementById("register-form").addEventListener("submit", function(e) {
+// Submit pakai Enter
+document.getElementById("register-form").addEventListener("submit", function (e) {
   e.preventDefault();
   register();
 });
