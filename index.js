@@ -67,3 +67,8 @@ function toggleVisibility(id) {
   let inputField = document.getElementById(id);
   inputField.type = inputField.type === "password" ? "text" : "password";
 }
+
+document.getElementById("login-form").addEventListener("submit", function(e) {
+  e.preventDefault(); // Mencegah reload
+  login(); // Panggil fungsi login
+});
