@@ -12,14 +12,24 @@
   <button class="sidebar-toggle" onclick="toggleSidebar()" id="toggleBtn">☰</button>
 
   <!-- Sidebar -->
-  <div class="sidebar hide-sidebar" id="sidebar">
-    <button class="close-sidebar" onclick="toggleSidebar()">X</button>
-    <h2>Set</h2>
-    <a href="#">Home</a>
-    <a href="#">Settings</a>
-    <button class="logout-btn" onclick="logout()">Logout</button>
-    <button class="delete-account-btn" onclick="deleteAccount()">Delete Account</button>
+ <div class="sidebar hide-sidebar" id="sidebar">
+  <button class="close-sidebar" onclick="toggleSidebar()">X</button>
+  <h2>Set</h2>
+  <a href="#">Home</a>
+
+  <!-- Settings menu with dropdown -->
+  <div class="sidebar-group">
+    <a href="#" onclick="toggleSubmenu(event)">Settings</a>
+    <div class="submenu" id="settings-submenu">
+      <a href="#" onclick="changeEmail()">Ganti Email</a>
+      <a href="#" onclick="resetPassword()">Reset Sandi</a>
+    </div>
   </div>
+
+  <button class="logout-btn" onclick="logout()">Logout</button>
+  <button class="delete-account-btn" onclick="deleteAccount()">Delete Account</button>
+</div>
+
 
   <!-- Konten Utama -->
   <div class="main-content expand-content" id="mainContent">
