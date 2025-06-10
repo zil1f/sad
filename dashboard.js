@@ -22,14 +22,6 @@ function toggleSidebar() {
   }
 }
 
-function editProfile() {
-  let newUsername = prompt("Masukkan username baru:");
-  if (newUsername) {
-    document.getElementById("username").textContent = newUsername;
-    localStorage.setItem("username", newUsername);
-  }
-}
-
 function changeBackground() {
   let bgURL = prompt("Masukkan URL gambar untuk background:");
   if (bgURL) {
@@ -96,6 +88,21 @@ function resetPassword() {
     user.password = newPass;
     localStorage.setItem("user", JSON.stringify(user));
     alert("Password berhasil direset! Anda akan logout.");
+    
+    // Logout otomatis
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "index.html";
+  }
+}
+
+function changeUsername() {
+  let newUsername = prompt("Masukkan username baru:");
+  if (newUsername) {
+    let user = JSON.parse(localStorage.getItem("user"));
+    user.username = newUsername;
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("username", newUsername); // juga update tampilan
+    alert("Username berhasil diubah! Anda akan logout.");
     
     // Logout otomatis
     localStorage.removeItem("isLoggedIn");
