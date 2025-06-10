@@ -79,9 +79,14 @@ function changeEmail() {
     let user = JSON.parse(localStorage.getItem("user"));
     user.email = email;
     localStorage.setItem("user", JSON.stringify(user));
-    alert("Email berhasil diubah!");
+    alert("Email berhasil diubah! Anda akan logout.");
+    
+    // Logout otomatis
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "index.html";
   }
 }
+
 
 // Fungsi reset password
 function resetPassword() {
@@ -90,7 +95,11 @@ function resetPassword() {
     let user = JSON.parse(localStorage.getItem("user"));
     user.password = newPass;
     localStorage.setItem("user", JSON.stringify(user));
-    alert("Password berhasil direset!");
+    alert("Password berhasil direset! Anda akan logout.");
+    
+    // Logout otomatis
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "index.html";
   }
 }
 
