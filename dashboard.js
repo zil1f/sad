@@ -96,18 +96,43 @@ function resetPassword() {
 }
 
 function changeUsername() {
-  let newUsername = prompt("Masukkan username baru:");
-  if (newUsername) {
-    let user = JSON.parse(localStorage.getItem("user"));
-    user.username = newUsername;
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("username", newUsername); // juga update tampilan
-    alert("Username berhasil diubah! Anda akan logout.");
-    
-    // Logout otomatis
-    localStorage.removeItem("isLoggedIn");
-    window.location.href = "index.html";
+  let newUsername = prompt("Masukkan username baru (tanpa spasi, huruf kecil, dan tidak jorok):");
+
+  if (!newUsername) return;
+
+  const hasSpace = /\s/.test(newUsername);
+  const hasUppercase = /[A-Z]/.test(newUsername);
+
+  // Daftar kata tidak pantas (bisa ditambah lagi)
+  const forbiddenWords = ["anjing", "babi", "kontol", "memek", "bangsat", "asu", "fuck", "shit"];
+
+  const containsBadWord = forbiddenWords.some(word =>
+    newUsername.toLowerCase().includes(word)
+  );
+
+  if (hasSpace) {
+    alert("Username tidak boleh mengandung spasi.");
+    return;
   }
+
+  if (hasUppercase) {
+    alert("Username tidak boleh mengandung huruf kapital.");
+    return;
+  }
+
+  if (containsBadWord) {
+    alert("Username mengandung kata tidak pantas.");
+    return;
+  }
+
+  let user = JSON.parse(localStorage.getItem("user"));
+  user.username = newUsername;
+  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("username", newUsername);
+  alert("Username berhasil diubah! Anda akan logout.");
+
+  localStorage.removeItem("isLoggedIn");
+  window.location.href = "index.html";
 }
 
 window.onload = function() {
