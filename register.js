@@ -5,11 +5,10 @@ function checkRegisterInput() {
   let agreeTerms = document.getElementById("agreeTerms").checked;
   let registerBtn = document.getElementById("register-btn");
 
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const isEmailValid = emailPattern.test(email);
-  const isPasswordValid = password.length >= 6;
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const passwordValid = password.length >= 6;
 
-  if (username && isEmailValid && isPasswordValid && agreeTerms) {
+  if (username && emailValid && passwordValid && agreeTerms) {
     registerBtn.classList.add("active");
     registerBtn.disabled = false;
   } else {
@@ -17,6 +16,7 @@ function checkRegisterInput() {
     registerBtn.disabled = true;
   }
 }
+
 
 function register() {
   let usernameInput = document.getElementById("register-username");
