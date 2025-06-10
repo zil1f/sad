@@ -60,6 +60,35 @@ function deleteAccount() {
   }
 }
 
+// Toggle submenu Settings
+function toggleSubmenu(event) {
+  event.preventDefault();
+  let submenu = document.getElementById("settings-submenu");
+  submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+}
+
+// Fungsi untuk ganti email
+function changeEmail() {
+  let email = prompt("Masukkan email baru:");
+  if (email) {
+    let user = JSON.parse(localStorage.getItem("user"));
+    user.email = email;
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("Email berhasil diubah!");
+  }
+}
+
+// Fungsi reset password
+function resetPassword() {
+  let newPass = prompt("Masukkan password baru:");
+  if (newPass) {
+    let user = JSON.parse(localStorage.getItem("user"));
+    user.password = newPass;
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("Password berhasil direset!");
+  }
+}
+
 window.onload = function() {
   let savedUsername = localStorage.getItem("username");
   let savedBackground = localStorage.getItem("background");
