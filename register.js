@@ -27,19 +27,16 @@ function register() {
   const password = passwordInput.value.trim();
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // Validasi format email
   if (!emailPattern.test(email)) {
     showToast("Format email tidak valid!", false);
     return;
   }
 
-  // Validasi panjang password
   if (password.length < 6) {
     showToast("Password minimal 6 karakter!", false);
     return;
   }
 
-  // Cek username sudah ada
   let storedUser = localStorage.getItem("user");
   if (storedUser) {
     let userData = JSON.parse(storedUser);
@@ -49,7 +46,6 @@ function register() {
     }
   }
 
-  // Simpan data
   let newUser = {
     username: usernameInput.value.trim(),
     email: email,
@@ -64,7 +60,11 @@ function register() {
   }, 2000);
 }
 
-// Notifikasi elegan
+function toggleVisibility(id) {
+  let input = document.getElementById(id);
+  input.type = input.type === "password" ? "text" : "password";
+}
+
 function showToast(message, success = true) {
   const toast = document.getElementById("toast");
   toast.innerText = message;
@@ -76,7 +76,6 @@ function showToast(message, success = true) {
   }, 3000);
 }
 
-// Submit pakai Enter
 document.getElementById("register-form").addEventListener("submit", function (e) {
   e.preventDefault();
   register();
