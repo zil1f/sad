@@ -49,10 +49,22 @@ function logout() {
 }
 
 function deleteAccount() {
-  if (confirm("Apakah Anda yakin ingin menghapus akun? Data tidak bisa dikembalikan!")) {
-    // Hapus semua data akun
-    localStorage.removeItem("user");          // akun login
-    localStorage.removeItem("username");      // tampilan
+  let user = JSON.parse(localStorage.getItem("user"));
+  let verify = prompt("Masukkan password untuk menghapus akun:");
+
+  if (!verify) {
+    alert("Verifikasi dibatalkan.");
+    return;
+  }
+
+  if (verify !== user.password) {
+    alert("Password salah. Akun tidak dihapus.");
+    return;
+  }
+
+  if (confirm("Apakah Anda yakin ingin menghapus akun? Semua data akan hilang!")) {
+    localStorage.removeItem("user");
+    localStorage.removeItem("username");
     localStorage.removeItem("profilePicture");
     localStorage.removeItem("background");
     localStorage.removeItem("isLoggedIn");
