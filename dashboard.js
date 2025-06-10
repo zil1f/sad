@@ -1,3 +1,8 @@
+// Redirect jika belum login
+if (localStorage.getItem("isLoggedIn") !== "true") {
+  window.location.href = "index.html";
+}
+
 // Fungsi untuk toggle sidebar
 function toggleSidebar() {
   let sidebar = document.getElementById("sidebar");
