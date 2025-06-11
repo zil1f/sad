@@ -6,22 +6,37 @@ function toggleSidebar() {
   sidebar.classList.toggle("hide-sidebar");
   mainContent.classList.toggle("expand-content");
 
-  if (sidebar.classList.contains("hide-sidebar")) {
-    toggleBtn.style.display = "block";
-  } else {
-    toggleBtn.style.display = "none";
-  }
+  toggleBtn.style.display = sidebar.classList.contains("hide-sidebar") ? "block" : "none";
 }
 
-function toggleSubmenu() {
+function toggleSubmenu(event) {
+  event.preventDefault();
   const submenu = document.getElementById("settings-submenu");
   submenu.classList.toggle("show");
+}
+
+function logout() {
+  localStorage.removeItem("isLoggedIn");
+  window.location.href = "index.html";
+}
+
+function deleteAccount() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const confirmPw = prompt("Masukkan password untuk menghapus akun:");
+  if (confirmPw !== user.password) {
+    showToast("Password salah. Akun tidak dihapus.", false);
+    return;
+  }
+
+  localStorage.clear();
+  showToast("Akun berhasil dihapus!", true);
+  setTimeout(() => window.location.href = "index.html", 2000);
 }
 
 function changeUsername() {
   const newUsername = prompt("Masukkan username baru (huruf kecil, tanpa spasi):");
   if (!newUsername || /\s/.test(newUsername) || /[A-Z]/.test(newUsername)) {
-    showToast("Username hanya huruf kecil & tanpa spasi!", false);
+    showToast("Username tidak boleh ada spasi/huruf besar!", false);
     return;
   }
 
@@ -58,45 +73,8 @@ function resetPassword() {
   user.password = newPass;
   localStorage.setItem("user", JSON.stringify(user));
   localStorage.removeItem("isLoggedIn");
-  showToast("Password berhasil diubah. Anda akan logout...", true);
-  setTimeout(() => (window.location.href = "index.html"), 2500);
-}
-
-function showAccountSettings() {
-  const container = document.getElementById("account-settings");
-  container.style.display = "block";
-  container.innerHTML = `
-    <div class="profile-card">
-      <h3 style="margin-bottom: 10px;">Pengaturan Akun</h3>
-      <button class="edit-btn" onclick="changeUsername()">📝 Ganti Username</button>
-      <button class="edit-btn" onclick="changeEmail()">✉️ Ganti Email</button>
-      <button class="edit-btn" onclick="resetPassword()">🔒 Reset Sandi</button>
-    </div>
-  `;
-}
-
-function logout() {
-  window.location.href = "index.html";
-}
-
-function deleteAccount() {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const confirmPw = prompt("Masukkan password untuk menghapus akun:");
-  if (confirmPw !== user.password) {
-    showToast("Password salah. Tidak jadi hapus akun.", false);
-    return;
-  }
-
-  localStorage.removeItem("user");
-  localStorage.removeItem("isLoggedIn");
-  localStorage.removeItem("profilePicture");
-  localStorage.removeItem("username");
-  localStorage.removeItem("background");
-
-  showToast("Akun berhasil dihapus.", true);
-  setTimeout(() => {
-    window.location.href = "index.html";
-  }, 2000);
+  showToast("Password diubah. Anda akan logout...", true);
+  setTimeout(() => window.location.href = "index.html", 2500);
 }
 
 function changeBackground() {
@@ -126,9 +104,7 @@ function showToast(message, success = true) {
   toast.innerText = message;
   toast.style.background = success ? "#28a745" : "#dc3545";
   toast.classList.add("show");
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3000);
+  setTimeout(() => toast.classList.remove("show"), 3000);
 }
 
 window.onload = function () {
