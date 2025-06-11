@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset Password</title>
+  <link rel="stylesheet" href="reset.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Reset Password</h2>
+    <input type="text" id="reset-username" placeholder="Username" />
+    <input type="email" id="reset-email" placeholder="Email yang terdaftar" />
+    <input type="text" id="reset-code" placeholder="Kode rahasia 10 digit" />
+    <input type="password" id="reset-new-password" placeholder="Password baru" />
+    <button onclick="resetPassword()">Reset</button>
+    <p class="switch" onclick="window.location.href='index.html'">Kembali ke Login</p>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="reset.js"></script>
+</body>
+</html>
