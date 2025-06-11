@@ -80,6 +80,18 @@ body {
   font-size: 14px;
 }
 
+.subacount {
+  display: none;
+  margin-top: 5px;
+  margin-left: 15px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.subacount b {
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 14px;
+}
+
 /* Tombol Close Sidebar */
 .close-sidebar {
   position: absolute;

@@ -81,6 +81,13 @@ function toggleSubmenu(event) {
   submenu.style.display = submenu.style.display === "block" ? "none" : "block";
 }
 
+// Toggle submenu Acount
+function toggleSubacount(event) {
+  event.preventDefault();
+  let subacount = document.getElementById("acount-subacount");
+  subacount.style.display = subacount.style.display === "block" ? "none" : "block";
+}
+
 // Fungsi untuk ganti email
 function changeEmail() {
   let email = prompt("Masukkan email baru:");
