@@ -26,58 +26,40 @@ body {
   z-index: 1000;
 }
 
-.sidebar h2.sidebar-title {
-  font-size: 20px;
+.sidebar h2 {
   margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Menu & Button Style */
-.sidebar a,
-.logout-btn,
-.delete-account-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  margin-bottom: 10px;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 15px;
+.sidebar a, .logout-btn, .delete-account-btn {
+  display: block;
   text-decoration: none;
   color: white;
-  transition: background 0.3s;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  transition: 0.3s;
   cursor: pointer;
-  text-align: left;
 }
 
-.sidebar a:hover,
-.logout-btn:hover,
+.sidebar a:hover {
+  background: #0056b3;
+}
+
+.logout-btn {
+  background: red;
+}
+
+.logout-btn:hover {
+  background: darkred;
+}
+
+.delete-account-btn {
+  background: black;
+}
+
 .delete-account-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-.menu-icon {
-  width: 20px;
-  display: inline-block;
-}
-
-/* Submenu Settings */
-.sidebar-group {
-  position: relative;
-}
-
-.submenu {
-  display: none;
-  margin-top: 5px;
-  margin-left: 15px;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.submenu a {
-  background: rgba(255, 255, 255, 0.05);
-  font-size: 14px;
+  background: darkgray;
 }
 
 /* Tombol Close Sidebar */
@@ -99,9 +81,9 @@ body {
   background: darkred;
 }
 
-/* Tombol Toggle */
+/* Toggle Sidebar */
 .sidebar-toggle {
-  position: fixed;
+  position: absolute;
   top: 20px;
   left: 20px;
   background: #007bff;
@@ -116,6 +98,14 @@ body {
 
 .sidebar-toggle:hover {
   background: #0056b3;
+}
+
+.hide-sidebar {
+  transform: translateX(-100%);
+}
+
+.expand-content {
+  margin-left: 0 !important;
 }
 
 /* Konten utama */
@@ -148,9 +138,7 @@ body {
   flex: 1;
 }
 
-.edit-btn,
-.bg-btn,
-.upload-btn {
+.edit-btn, .bg-btn, .upload-btn {
   background: #007bff;
   color: white;
   padding: 5px 10px;
@@ -161,52 +149,60 @@ body {
   margin-top: 10px;
 }
 
-.edit-btn:hover,
-.bg-btn:hover,
-.upload-btn:hover {
+.edit-btn:hover, .bg-btn:hover, .upload-btn:hover {
   background: #0056b3;
 }
 
-/* Sidebar hide class */
-.hide-sidebar {
-  transform: translateX(-100%);
+/* Submenu settings */
+.dropdown {
+  position: relative;
 }
 
-.expand-content {
-  margin-left: 0;
+.submenu {
+  display: none;
+  background: #0056b3;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-/* Animasi submenu */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.submenu a {
+  padding: 5px;
+  display: block;
+  color: white;
+  text-align: left;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 200px;
-  }
+.submenu.show {
+  display: block;
+}
 
-  .main-content {
-    margin-left: 0;
-    padding: 10px;
-  }
+/* Area menu akun */
+#account-settings {
+  margin-top: 20px;
+}
 
-  .profile-card {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+#account-settings .edit-btn {
+  margin: 8px 0;
+  width: 100%;
+}
 
-  .sidebar-toggle {
-    top: 10px;
-    left: 10px;
-    padding: 8px;
-  }
+/* Toast Notification */
+#toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #007bff;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateY(0);
 }
