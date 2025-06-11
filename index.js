@@ -66,6 +66,35 @@ function login() {
   }, 1000);
 }
 
+function resetPassword() {
+  const stored = localStorage.getItem("user");
+  if (!stored) {
+    showToast("Belum ada akun terdaftar!", false);
+    return;
+  }
+
+  const user = JSON.parse(stored);
+  const username = prompt("Masukkan username Anda:");
+  const email = prompt("Masukkan email yang terdaftar:");
+  const code = prompt("Masukkan 10-digit kode reset:");
+
+  if (username !== user.username || email !== user.email || code !== user.secretCode) {
+    showToast("Data tidak cocok! Reset gagal.", false);
+    return;
+  }
+
+  const newPass = prompt("Masukkan password baru (min 6 karakter & ada angka):");
+
+  if (!newPass || newPass.length < 6 || !/\d/.test(newPass)) {
+    showToast("Password harus minimal 6 karakter & mengandung angka!", false);
+    return;
+  }
+
+  user.password = newPass;
+  localStorage.setItem("user", JSON.stringify(user));
+  showToast("Password berhasil direset!", true);
+}
+
 function showToast(message, success = true) {
   const toast = document.getElementById("toast");
   toast.innerText = message;
