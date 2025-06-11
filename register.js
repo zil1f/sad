@@ -1,54 +1,80 @@
 function checkRegisterInput() {
-  const u = document.getElementById("register-username").value.trim();
-  const e = document.getElementById("register-email").value.trim();
-  const p = document.getElementById("register-password").value.trim();
-  const c = document.getElementById("agreeTerms").checked;
-  const b = document.getElementById("register-btn");
+  const username = document.getElementById("register-username").value.trim();
+  const email = document.getElementById("register-email").value.trim();
+  const password = document.getElementById("register-password").value.trim();
+  const agreeTerms = document.getElementById("agreeTerms").checked;
+  const registerBtn = document.getElementById("register-btn");
 
-  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-  const validPass = p.length >= 6;
-  if (u && validEmail && validPass && c) {
-    b.classList.add("active");
-    b.disabled = false;
+  // Tetap bisa diklik, tapi pudar kalau belum valid
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const passwordValid = password.length >= 6 && /\d/.test(password);
+
+  if (username && emailValid && passwordValid && agreeTerms) {
+    registerBtn.classList.add("active");
   } else {
-    b.classList.remove("active");
-    b.disabled = true;
+    registerBtn.classList.remove("active");
   }
+
+  registerBtn.disabled = false; // tombol tetap bisa diklik
 }
 
 function register() {
-  const u = document.getElementById("register-username").value.trim();
-  const e = document.getElementById("register-email").value.trim();
-  const p = document.getElementById("register-password").value.trim();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const username = document.getElementById("register-username").value.trim();
+  const email = document.getElementById("register-email").value.trim();
+  const password = document.getElementById("register-password").value.trim();
+  const agreeTerms = document.getElementById("agreeTerms").checked;
 
-  if (!emailRegex.test(e)) return showToast("Email tidak valid!", false);
-  if (p.length < 6) return showToast("Password minimal 6 karakter!", false);
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailValid = emailPattern.test(email);
+  const passwordValid = password.length >= 6 && /\d/.test(password);
 
-  const old = localStorage.getItem("user");
-  if (old && JSON.parse(old).username === u) {
-    return showToast("Username sudah terdaftar!", false);
+  if (!username) {
+    showToast("Username belum diisi!", false); return;
+  }
+  if (!email) {
+    showToast("Email belum diisi!", false); return;
+  }
+  if (!emailValid) {
+    showToast("Email tidak valid! Contoh: user@gmail.com", false); return;
+  }
+  if (!password) {
+    showToast("Password belum diisi!", false); return;
+  }
+  if (!passwordValid) {
+    showToast("Password harus minimal 6 karakter & mengandung angka!", false); return;
+  }
+  if (!agreeTerms) {
+    showToast("Anda harus menyetujui syarat & ketentuan.", false); return;
   }
 
-  localStorage.setItem("user", JSON.stringify({ username: u, email: e, password: p }));
-  showToast("Registrasi berhasil! Mengalihkan...", true);
+  const storedUser = localStorage.getItem("user");
+  if (storedUser) {
+    const userData = JSON.parse(storedUser);
+    if (username === userData.username) {
+      showToast("Username sudah terdaftar!", false); return;
+    }
+  }
+
+  const newUser = { username, email, password };
+  localStorage.setItem("user", JSON.stringify(newUser));
+  showToast("Registrasi berhasil! Mengalihkan ke login...", true);
   setTimeout(() => window.location.href = "index.html", 2000);
 }
 
 function toggleVisibility(id) {
-  let x = document.getElementById(id);
-  x.type = x.type === "password" ? "text" : "password";
+  const input = document.getElementById(id);
+  input.type = input.type === "password" ? "text" : "password";
 }
 
-function showToast(msg, ok = true) {
-  const t = document.getElementById("toast");
-  t.innerText = msg;
-  t.style.background = ok ? "#28a745" : "#dc3545";
-  t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 3000);
+function showToast(message, success = true) {
+  const toast = document.getElementById("toast");
+  toast.innerText = message;
+  toast.style.background = success ? "#28a745" : "#dc3545";
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 3000);
 }
 
-document.getElementById("register-form").addEventListener("submit", e => {
+document.getElementById("register-form").addEventListener("submit", function (e) {
   e.preventDefault();
   register();
 });
