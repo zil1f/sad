@@ -15,19 +15,16 @@ body {
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255,255,255,0.2);
   backdrop-filter: blur(10px);
   padding: 20px;
   border-radius: 10px;
   width: 300px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.container h2 {
-  color: white;
-  margin-bottom: 20px;
-}
+h2 { color: white; margin-bottom: 20px; }
 
 .input-box {
   margin-bottom: 15px;
@@ -79,7 +76,7 @@ body {
   font-size: 16px;
   opacity: 0.5;
   pointer-events: none;
-  transition: 0.3s ease;
+  transition: background 0.3s, opacity 0.3s;
 }
 
 .btn.active {
