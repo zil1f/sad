@@ -92,6 +92,11 @@ body {
   font-size: 14px;
 }
 
+/* Beta Settings */
+.sidebar-group2 {
+  position: relative;
+}
+
 /* Tombol Close Sidebar */
 .close-sidebar {
   position: absolute;
