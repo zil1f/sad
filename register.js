@@ -5,7 +5,6 @@ function checkRegisterInput() {
   const agreeTerms = document.getElementById("agreeTerms").checked;
   const registerBtn = document.getElementById("register-btn");
 
-  // Tetap bisa diklik, tapi pudar kalau belum valid
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const passwordValid = password.length >= 6 && /\d/.test(password);
 
@@ -15,7 +14,7 @@ function checkRegisterInput() {
     registerBtn.classList.remove("active");
   }
 
-  registerBtn.disabled = false; // tombol tetap bisa diklik
+  registerBtn.disabled = false; // tombol selalu bisa diklik
 }
 
 function register() {
@@ -28,37 +27,36 @@ function register() {
   const emailValid = emailPattern.test(email);
   const passwordValid = password.length >= 6 && /\d/.test(password);
 
-  if (!username) {
-    showToast("Username belum diisi!", false); return;
-  }
-  if (!email) {
-    showToast("Email belum diisi!", false); return;
-  }
-  if (!emailValid) {
-    showToast("Email tidak valid! Contoh: user@gmail.com", false); return;
-  }
-  if (!password) {
-    showToast("Password belum diisi!", false); return;
-  }
-  if (!passwordValid) {
-    showToast("Password harus minimal 6 karakter & mengandung angka!", false); return;
-  }
-  if (!agreeTerms) {
-    showToast("Anda harus menyetujui syarat & ketentuan.", false); return;
-  }
+  if (!username) return showToast("Username belum diisi!", false);
+  if (!email) return showToast("Email belum diisi!", false);
+  if (!emailValid) return showToast("Email tidak valid! Contoh: user@gmail.com", false);
+  if (!password) return showToast("Password belum diisi!", false);
+  if (!passwordValid) return showToast("Password harus minimal 6 karakter & mengandung angka!", false);
+  if (!agreeTerms) return showToast("Anda harus menyetujui syarat & ketentuan.", false);
 
   const storedUser = localStorage.getItem("user");
   if (storedUser) {
     const userData = JSON.parse(storedUser);
     if (username === userData.username) {
-      showToast("Username sudah terdaftar!", false); return;
+      return showToast("Username sudah terdaftar!", false);
     }
   }
 
-  const newUser = { username, email, password };
+  // Buat secret code 10 angka
+  const secretCode = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+
+  const newUser = { username, email, password, secretCode };
   localStorage.setItem("user", JSON.stringify(newUser));
-  showToast("Registrasi berhasil! Mengalihkan ke login...", true);
-  setTimeout(() => window.location.href = "index.html", 2000);
+
+  showToast(`Registrasi berhasil! Kode reset Anda: ${secretCode}`, true);
+
+  setTimeout(() => {
+    showToast("Mengalihkan ke login...", true);
+  }, 1500);
+
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 3000);
 }
 
 function toggleVisibility(id) {
