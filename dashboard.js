@@ -1,29 +1,106 @@
-// Redirect jika belum login
-if (localStorage.getItem("isLoggedIn") !== "true") {
-  window.location.href = "index.html";
-}
-
-// Fungsi untuk toggle sidebar
 function toggleSidebar() {
-  let sidebar = document.getElementById("sidebar");
-  let mainContent = document.getElementById("mainContent");
-  let toggleBtn = document.getElementById("toggleBtn");
+  const sidebar = document.getElementById("sidebar");
+  const mainContent = document.getElementById("mainContent");
+  const toggleBtn = document.querySelector(".sidebar-toggle");
+
+  sidebar.classList.toggle("hide-sidebar");
+  mainContent.classList.toggle("expand-content");
 
   if (sidebar.classList.contains("hide-sidebar")) {
-    // Buka sidebar
-    sidebar.classList.remove("hide-sidebar");
-    mainContent.classList.remove("expand-content");
-    toggleBtn.style.display = "none";
-  } else {
-    // Tutup sidebar
-    sidebar.classList.add("hide-sidebar");
-    mainContent.classList.add("expand-content");
     toggleBtn.style.display = "block";
+  } else {
+    toggleBtn.style.display = "none";
   }
 }
 
+function toggleSubmenu() {
+  const submenu = document.getElementById("settings-submenu");
+  submenu.classList.toggle("show");
+}
+
+function changeUsername() {
+  const newUsername = prompt("Masukkan username baru (huruf kecil, tanpa spasi):");
+  if (!newUsername || /\s/.test(newUsername) || /[A-Z]/.test(newUsername)) {
+    showToast("Username hanya huruf kecil & tanpa spasi!", false);
+    return;
+  }
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  user.username = newUsername;
+  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("username", newUsername);
+  document.getElementById("username").textContent = newUsername;
+  showToast("Username berhasil diganti!", true);
+}
+
+function changeEmail() {
+  const newEmail = prompt("Masukkan email baru:");
+  const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!pattern.test(newEmail)) {
+    showToast("Email tidak valid!", false);
+    return;
+  }
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  user.email = newEmail;
+  localStorage.setItem("user", JSON.stringify(user));
+  showToast("Email berhasil diganti!", true);
+}
+
+function resetPassword() {
+  const newPass = prompt("Masukkan password baru (min 6 karakter & angka):");
+  if (!newPass || newPass.length < 6 || !/\d/.test(newPass)) {
+    showToast("Password tidak valid!", false);
+    return;
+  }
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  user.password = newPass;
+  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.removeItem("isLoggedIn");
+  showToast("Password berhasil diubah. Anda akan logout...", true);
+  setTimeout(() => (window.location.href = "index.html"), 2500);
+}
+
+function showAccountSettings() {
+  const container = document.getElementById("account-settings");
+  container.style.display = "block";
+  container.innerHTML = `
+    <div class="profile-card">
+      <h3 style="margin-bottom: 10px;">Pengaturan Akun</h3>
+      <button class="edit-btn" onclick="changeUsername()">📝 Ganti Username</button>
+      <button class="edit-btn" onclick="changeEmail()">✉️ Ganti Email</button>
+      <button class="edit-btn" onclick="resetPassword()">🔒 Reset Sandi</button>
+    </div>
+  `;
+}
+
+function logout() {
+  window.location.href = "index.html";
+}
+
+function deleteAccount() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const confirmPw = prompt("Masukkan password untuk menghapus akun:");
+  if (confirmPw !== user.password) {
+    showToast("Password salah. Tidak jadi hapus akun.", false);
+    return;
+  }
+
+  localStorage.removeItem("user");
+  localStorage.removeItem("isLoggedIn");
+  localStorage.removeItem("profilePicture");
+  localStorage.removeItem("username");
+  localStorage.removeItem("background");
+
+  showToast("Akun berhasil dihapus.", true);
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 2000);
+}
+
 function changeBackground() {
-  let bgURL = prompt("Masukkan URL gambar untuk background:");
+  const bgURL = prompt("Masukkan URL gambar untuk background:");
   if (bgURL) {
     document.body.style.backgroundImage = `url('${bgURL}')`;
     document.body.style.backgroundSize = "cover";
@@ -33,10 +110,10 @@ function changeBackground() {
 }
 
 function uploadProfilePicture(event) {
-  let file = event.target.files[0];
+  const file = event.target.files[0];
   if (file) {
-    let reader = new FileReader();
-    reader.onload = function(e) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
       document.getElementById("profilePic").src = e.target.result;
       localStorage.setItem("profilePicture", e.target.result);
     };
@@ -44,118 +121,20 @@ function uploadProfilePicture(event) {
   }
 }
 
-function logout() {
-  window.location.href = "index.html";
+function showToast(message, success = true) {
+  const toast = document.getElementById("toast");
+  toast.innerText = message;
+  toast.style.background = success ? "#28a745" : "#dc3545";
+  toast.classList.add("show");
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
 }
 
-function deleteAccount() {
-  let user = JSON.parse(localStorage.getItem("user"));
-  let verify = prompt("Masukkan password untuk menghapus akun:");
-
-  if (!verify) {
-    alert("Verifikasi dibatalkan.");
-    return;
-  }
-
-  if (verify !== user.password) {
-    alert("Password salah. Akun tidak dihapus.");
-    return;
-  }
-
-  if (confirm("Apakah Anda yakin ingin menghapus akun? Semua data akan hilang!")) {
-    localStorage.removeItem("user");
-    localStorage.removeItem("username");
-    localStorage.removeItem("profilePicture");
-    localStorage.removeItem("background");
-    localStorage.removeItem("isLoggedIn");
-
-    alert("Akun berhasil dihapus.");
-    window.location.href = "index.html";
-  }
-}
-
-// Toggle submenu Settings
-function toggleSubmenu(event) {
-  event.preventDefault();
-  let submenu = document.getElementById("settings-submenu");
-  submenu.style.display = submenu.style.display === "block" ? "none" : "block";
-}
-
-// Fungsi untuk ganti email
-function changeEmail() {
-  let email = prompt("Masukkan email baru:");
-  if (email) {
-    let user = JSON.parse(localStorage.getItem("user"));
-    user.email = email;
-    localStorage.setItem("user", JSON.stringify(user));
-    alert("Email berhasil diubah! Anda akan logout.");
-    
-    // Logout otomatis
-    localStorage.removeItem("isLoggedIn");
-    window.location.href = "index.html";
-  }
-}
-
-
-// Fungsi reset password
-function resetPassword() {
-  let newPass = prompt("Masukkan password baru:");
-  if (newPass) {
-    let user = JSON.parse(localStorage.getItem("user"));
-    user.password = newPass;
-    localStorage.setItem("user", JSON.stringify(user));
-    alert("Password berhasil direset! Anda akan logout.");
-    
-    // Logout otomatis
-    localStorage.removeItem("isLoggedIn");
-    window.location.href = "index.html";
-  }
-}
-
-function changeUsername() {
-  let newUsername = prompt("Masukkan username baru (tanpa spasi, huruf kecil, dan tidak jorok):");
-
-  if (!newUsername) return;
-
-  const hasSpace = /\s/.test(newUsername);
-  const hasUppercase = /[A-Z]/.test(newUsername);
-
-  // Daftar kata tidak pantas (bisa ditambah lagi)
-  const forbiddenWords = ["anjing", "babi", "kontol", "memek", "bangsat", "asu", "fuck", "shit"];
-
-  const containsBadWord = forbiddenWords.some(word =>
-    newUsername.toLowerCase().includes(word)
-  );
-
-  if (hasSpace) {
-    alert("Username tidak boleh mengandung spasi.");
-    return;
-  }
-
-  if (hasUppercase) {
-    alert("Username tidak boleh mengandung huruf kapital.");
-    return;
-  }
-
-  if (containsBadWord) {
-    alert("Username mengandung kata tidak pantas.");
-    return;
-  }
-
-  let user = JSON.parse(localStorage.getItem("user"));
-  user.username = newUsername;
-  localStorage.setItem("user", JSON.stringify(user));
-  localStorage.setItem("username", newUsername);
-  alert("Username berhasil diubah! Anda akan logout.");
-
-  localStorage.removeItem("isLoggedIn");
-  window.location.href = "index.html";
-}
-
-window.onload = function() {
-  let savedUsername = localStorage.getItem("username");
-  let savedBackground = localStorage.getItem("background");
-  let savedProfilePicture = localStorage.getItem("profilePicture");
+window.onload = function () {
+  const savedUsername = localStorage.getItem("username");
+  const savedBackground = localStorage.getItem("background");
+  const savedProfilePicture = localStorage.getItem("profilePicture");
 
   if (savedUsername) {
     document.getElementById("username").textContent = savedUsername;
@@ -171,13 +150,5 @@ window.onload = function() {
     document.getElementById("profilePic").src = savedProfilePicture;
   }
 
-  // Atur tombol ☰ sesuai status sidebar saat pertama kali load
-  let sidebar = document.getElementById("sidebar");
-  let toggleBtn = document.getElementById("toggleBtn");
-
-  if (sidebar.classList.contains("hide-sidebar")) {
-    toggleBtn.style.display = "block";
-  } else {
-    toggleBtn.style.display = "none";
-  }
+  document.querySelector(".sidebar-toggle").style.display = "none";
 };
