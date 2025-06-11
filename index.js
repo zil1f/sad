@@ -21,8 +21,7 @@ function login() {
   let storedUser = localStorage.getItem("user");
 
   if (!storedUser) {
-    errorMsg.innerText = "Tidak ada akun terdaftar!";
-    errorMsg.style.display = "block";
+    showToast("Tidak ada akun terdaftar!", false);
     return;
   }
 
@@ -37,11 +36,17 @@ function login() {
       passwordInput.value === userData.password
     ) {
       localStorage.setItem("isLoggedIn", "true");
-      window.location.href = "dashboard.html";
-    } else {
-      errorMsg.innerText = "Username atau password salah!";
-      errorMsg.style.display = "block";
 
+      showToast("Login berhasil!", true);
+      setTimeout(() => {
+        showToast("Mengalihkan ke dashboard...", true);
+      }, 1000);
+
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 2500);
+    } else {
+      showToast("Username atau password salah!", false);
       usernameInput.classList.add("shake");
       passwordInput.classList.add("shake");
 
@@ -50,8 +55,6 @@ function login() {
         passwordInput.classList.remove("shake");
       }, 500);
 
-      usernameInput.classList.add("error");
-      passwordInput.classList.add("error");
       usernameInput.value = "";
       passwordInput.value = "";
       usernameInput.placeholder = "Salah!";
@@ -61,6 +64,14 @@ function login() {
     loginBtn.innerText = "Masuk";
     loginBtn.disabled = false;
   }, 1000);
+}
+
+function showToast(message, success = true) {
+  const toast = document.getElementById("toast");
+  toast.innerText = message;
+  toast.style.background = success ? "#28a745" : "#dc3545";
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 3000);
 }
 
 function toggleVisibility(id) {
