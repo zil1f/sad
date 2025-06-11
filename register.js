@@ -1,75 +1,54 @@
 function checkRegisterInput() {
-  const username = document.getElementById("register-username").value.trim();
-  const email = document.getElementById("register-email").value.trim();
-  const password = document.getElementById("register-password").value.trim();
-  const agreeTerms = document.getElementById("agreeTerms").checked;
-  const registerBtn = document.getElementById("register-btn");
+  const u = document.getElementById("register-username").value.trim();
+  const e = document.getElementById("register-email").value.trim();
+  const p = document.getElementById("register-password").value.trim();
+  const c = document.getElementById("agreeTerms").checked;
+  const b = document.getElementById("register-btn");
 
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const passwordValid = password.length >= 6;
-
-  if (username && emailValid && passwordValid && agreeTerms) {
-    registerBtn.classList.add("active");
-    registerBtn.disabled = false;
+  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+  const validPass = p.length >= 6;
+  if (u && validEmail && validPass && c) {
+    b.classList.add("active");
+    b.disabled = false;
   } else {
-    registerBtn.classList.remove("active");
-    registerBtn.disabled = true;
+    b.classList.remove("active");
+    b.disabled = true;
   }
 }
 
 function register() {
-  const usernameInput = document.getElementById("register-username");
-  const emailInput = document.getElementById("register-email");
-  const passwordInput = document.getElementById("register-password");
+  const u = document.getElementById("register-username").value.trim();
+  const e = document.getElementById("register-email").value.trim();
+  const p = document.getElementById("register-password").value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const username = usernameInput.value.trim();
-  const email = emailInput.value.trim();
-  const password = passwordInput.value.trim();
+  if (!emailRegex.test(e)) return showToast("Email tidak valid!", false);
+  if (p.length < 6) return showToast("Password minimal 6 karakter!", false);
 
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(email)) {
-    showToast("Format email tidak valid!", false);
-    return;
-  }
-  if (password.length < 6) {
-    showToast("Password minimal 6 karakter!", false);
-    return;
+  const old = localStorage.getItem("user");
+  if (old && JSON.parse(old).username === u) {
+    return showToast("Username sudah terdaftar!", false);
   }
 
-  let storedUser = localStorage.getItem("user");
-  if (storedUser) {
-    const userData = JSON.parse(storedUser);
-    if (username === userData.username) {
-      showToast("Username sudah terdaftar!", false);
-      return;
-    }
-  }
-
-  const newUser = { username, email, password };
-  localStorage.setItem("user", JSON.stringify(newUser));
-  showToast("Registrasi berhasil! Mengalihkan ke login...", true);
-
-  setTimeout(() => {
-    window.location.href = "index.html";
-  }, 2000);
+  localStorage.setItem("user", JSON.stringify({ username: u, email: e, password: p }));
+  showToast("Registrasi berhasil! Mengalihkan...", true);
+  setTimeout(() => window.location.href = "index.html", 2000);
 }
 
 function toggleVisibility(id) {
-  const input = document.getElementById(id);
-  input.type = input.type === "password" ? "text" : "password";
+  let x = document.getElementById(id);
+  x.type = x.type === "password" ? "text" : "password";
 }
 
-function showToast(message, success = true) {
-  const toast = document.getElementById("toast");
-  toast.innerText = message;
-  toast.style.background = success ? "#28a745" : "#dc3545";
-  toast.classList.add("show");
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3000);
+function showToast(msg, ok = true) {
+  const t = document.getElementById("toast");
+  t.innerText = msg;
+  t.style.background = ok ? "#28a745" : "#dc3545";
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 3000);
 }
 
-document.getElementById("register-form").addEventListener("submit", function(e) {
+document.getElementById("register-form").addEventListener("submit", e => {
   e.preventDefault();
   register();
 });
