@@ -88,6 +88,13 @@ function toggleSubacount(event) {
   subacount.style.display = subacount.style.display === "block" ? "none" : "block";
 }
 
+// Toggle subbeta
+function toggleSubbeta(event) {
+  event.preventDefault();
+  let subbeta = document.getElemenById("settings-subbeta");
+  subbeta.style.display = subbeta.style.display === "block" ? "none" : "block";
+}
+
 // Fungsi untuk ganti email
 function changeEmail() {
   let email = prompt("Masukkan email baru:");
