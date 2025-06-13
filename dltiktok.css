@@ -1,0 +1,199 @@
+/* RESET & LAYOUT DASAR */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f4f4;
+}
+
+/* WRAPPER untuk toggle dan main content */
+.wrapper {
+  flex: 1;
+  position: relative;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 250px;
+  background: #007bff;
+  padding: 20px;
+  color: white;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar h2.sidebar-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar a,
+.logout-btn,
+.delete-account-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  text-decoration: none;
+  color: white;
+  transition: background 0.3s;
+  cursor: pointer;
+  text-align: left;
+  border: none;
+}
+
+.sidebar a:hover,
+.logout-btn:hover,
+.delete-account-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.menu-icon {
+  width: 20px;
+  display: inline-block;
+}
+
+/* TOMBOL TOGGLE ☰ */
+.sidebar-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 999;
+  font-size: 18px;
+}
+
+.sidebar-toggle:hover {
+  background: #0056b3;
+}
+
+/* TOMBOL CLOSE X */
+.close-sidebar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-sidebar:hover {
+  background: darkred;
+}
+
+/* SIDEBAR HIDE / EXPAND MAIN */
+.hide-sidebar {
+  transform: translateX(-100%);
+}
+
+.expand-content {
+  margin-left: 0;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .sidebar-toggle {
+    top: 10px;
+    left: 10px;
+    padding: 8px;
+  }
+}
+
+/* DOWNLOADER TIKTOK */
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.result {
+  margin-top: 20px;
+  display: none;
+}
+
+video,
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
+
+a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007bff;
+}
+
+.info {
+  margin-top: 15px;
+}

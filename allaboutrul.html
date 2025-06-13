@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All About Rul</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <!-- Tombol toggle sidebar -->
+  <button class="sidebar-toggle" onclick="toggleSidebar()" id="toggleBtn">☰</button>
+
+  <!-- Sidebar -->
+<div class="sidebar hide-sidebar" id="sidebar">
+  <button class="close-sidebar" onclick="toggleSidebar()">✖</button>
+  <h2 class="sidebar-title">☰ Menu</h2>
+
+  <a href="dashboard.html"><span class="menu-icon">🏠</span> Home</a>
+
+  <!-- Tombol All yang bisa toggle -->
+  <a href="#" onclick="toggleAllMenu(event)"><span class="menu-icon">📂</span> All</a>
+  <div class="submenu" id="all-submenu">
+    <a href="dltiktok.html">📥 Downloader</a>
+  </div>
+
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  <button class="delete-account-btn" onclick="deleteAccount()">🗑️ Delete Account</button>
+</div>
+
+
+
+  <!-- Konten Utama -->
+  <div class="main-content expand-content" id="mainContent">
+    <div class="profile-card">
+      <div class="profile-info">
+        <h3>Halaman All About Rul</h3>
+        <p>Ini adalah halaman eksperimen buat menampilkan konten khusus Rul, bisa artikel, catatan, atau ide keren lainnya 😎</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="allaboutrul.js"></script>
+</body>
+</html>

@@ -88,11 +88,11 @@ function toggleSubacount(event) {
   subacount.style.display = subacount.style.display === "block" ? "none" : "block";
 }
 
-// Toggle subbeta
-function toggleSubbeta(event) {
+// Toggle submenu Beta
+function toggleSubdebar(event) {
   event.preventDefault();
-  let subbeta = document.getElemenById("settings-subbeta");
-  subbeta.style.display = subbeta.style.display === "block" ? "none" : "block";
+  let subdebar = document.getElementById("debar-subdebar");
+  subdebar.style.display = subdebar.style.display === "block" ? "none" : "block";
 }
 
 // Fungsi untuk ganti email

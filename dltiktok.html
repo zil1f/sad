@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Downloader TikTok</title>
+  <link rel="stylesheet" href="dltiktok.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar hide-sidebar" id="sidebar">
+    <button class="close-sidebar" onclick="toggleSidebar()">✖</button>
+    <h2 class="sidebar-title">☰ Menu</h2>
+
+    <a href="dashboard.html"><span class="menu-icon">🏠</span> Home</a>
+    <a href="allaboutrul.html"><span class="menu-icon">📘</span> All About Rul (Back)</a>
+    <a href="#"><span class="menu-icon">🛠️</span> Support</a>
+    <a href="#"><span class="menu-icon">💰</span> Donate</a>
+
+    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+    <button class="delete-account-btn" onclick="deleteAccount()">🗑️ Delete Account</button>
+  </div>
+
+  <!-- Konten dan tombol toggle -->
+  <div class="wrapper">
+    <button class="sidebar-toggle" onclick="toggleSidebar()" id="toggleBtn">☰</button>
+
+    <div class="main-content expand-content" id="mainContent">
+      <div class="container">
+        <h1>Downloader Video TikTok By Zi</h1>
+        <input type="text" id="url" placeholder="Tempel URL TikTok di sini">
+        <button onclick="downloadVideo()">Download Sekarang</button>
+        <div class="result" id="result">
+          <h3>Hasil:</h3>
+          <p id="title"></p>
+          <video id="video" controls></video>
+          <a id="downloadLink" href="#" download="zittdl.mp4">Download Video</a>
+          <audio id="audio" controls></audio>
+          <div class="info">
+            <p><strong>Author:</strong> <span id="author"></span></p>
+            <p><strong>Views:</strong> <span id="views"></span></p>
+            <p><strong>Likes:</strong> <span id="likes"></span></p>
+            <p><strong>Comments:</strong> <span id="comments"></span></p>
+            <p><strong>Shares:</strong> <span id="shares"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="dltiktok.js"></script>
+</body>
+</html>
