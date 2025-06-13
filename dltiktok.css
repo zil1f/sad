@@ -1,154 +1,45 @@
-/* RESET & LAYOUT DASAR */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
 body {
-  display: flex;
-  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
   background: #f4f4f4;
 }
 
-/* WRAPPER untuk toggle dan main content */
-.wrapper {
-  flex: 1;
-  position: relative;
-}
-
-/* SIDEBAR */
-.sidebar {
-  width: 250px;
-  background: #007bff;
-  padding: 20px;
-  color: white;
+/* Tombol Navigasi */
+.nav-buttons {
   position: fixed;
-  height: 100vh;
-  left: 0;
-  top: 0;
-  transition: transform 0.3s ease;
-  z-index: 1000;
-}
-
-.sidebar h2.sidebar-title {
-  font-size: 20px;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.sidebar a,
-.logout-btn,
-.delete-account-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  margin-bottom: 10px;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 15px;
-  text-decoration: none;
-  color: white;
-  transition: background 0.3s;
-  cursor: pointer;
-  text-align: left;
-  border: none;
-}
-
-.sidebar a:hover,
-.logout-btn:hover,
-.delete-account-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-.menu-icon {
-  width: 20px;
-  display: inline-block;
-}
-
-/* TOMBOL TOGGLE ☰ */
-.sidebar-toggle {
-  position: absolute;
   top: 20px;
   left: 20px;
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-  z-index: 999;
-  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
 }
 
-.sidebar-toggle:hover {
+.nav-btn {
+  background: #007bff;
+  color: white;
+  padding: 8px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
   background: #0056b3;
 }
 
-/* TOMBOL CLOSE X */
-.close-sidebar {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: red;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 50%;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.close-sidebar:hover {
-  background: darkred;
-}
-
-/* SIDEBAR HIDE / EXPAND MAIN */
-.hide-sidebar {
-  transform: translateX(-100%);
-}
-
-.expand-content {
-  margin-left: 0;
-}
-
 .main-content {
-  flex: 1;
-  margin-left: 250px;
-  padding: 20px;
-  transition: margin-left 0.3s ease;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 200px;
-  }
-
-  .main-content {
-    margin-left: 0;
-    padding: 10px;
-  }
-
-  .sidebar-toggle {
-    top: 10px;
-    left: 10px;
-    padding: 8px;
-  }
-}
-
-/* DOWNLOADER TIKTOK */
-.container {
-  max-width: 500px;
+  padding: 100px 20px 40px;
+  max-width: 600px;
   margin: auto;
+}
+
+.container {
   background: white;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
@@ -157,43 +48,92 @@ body {
   margin-bottom: 20px;
 }
 
-input[type="text"],
-button {
+input[type="text"] {
   width: 100%;
   padding: 10px;
-  margin-top: 10px;
+  margin: 10px 0;
   font-size: 16px;
 }
 
 button {
-  background-color: #4CAF50;
-  border: none;
+  width: 100%;
+  padding: 10px;
+  background: green;
   color: white;
-  border-radius: 6px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #3a963a;
 }
 
 .result {
-  margin-top: 20px;
   display: none;
+  margin-top: 20px;
 }
 
-video,
-audio {
+.result img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.result video {
   width: 100%;
   margin-top: 10px;
 }
 
-a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #007bff;
+/* ...css sebelumnya tetap... */
+
+.loading {
+  display: none;
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+  animation: blink 1s infinite;
 }
 
-.info {
-  margin-top: 15px;
+.history {
+  margin-top: 40px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+.history h3 {
+  margin-bottom: 10px;
+}
+
+#historyList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#historyList li {
+  margin-bottom: 8px;
+}
+
+#historyList li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#historyList li a:hover {
+  text-decoration: underline;
+}
+
+.history select {
+  padding: 5px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+@keyframes blink {
+  50% { opacity: 0.5; }
 }
