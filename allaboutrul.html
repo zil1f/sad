@@ -4,39 +4,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>All About Rul</title>
-  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="allaboutrul.css">
 </head>
 <body>
+
+  <!-- Sidebar -->
+  <div class="sidebar hide-sidebar" id="sidebar">
+    <button class="close-sidebar" onclick="toggleSidebar()">✖</button>
+    <h2 class="sidebar-title">☰ Menu</h2>
+    <a href="dashboard.html"><span class="menu-icon">🏠</span> Home</a>
+    <a href="#" onclick="toggleAllMenu(event)"><span class="menu-icon">📂</span> All</a>
+    <div class="submenu" id="all-submenu">
+      <a href="dltiktok.html">📥 Downloader</a>
+    </div>
+    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+    <button class="delete-account-btn" onclick="deleteAccount()">🗑️ Delete Account</button>
+  </div>
+
+  <!-- Overlay Blur -->
+  <div id="overlay" class="overlay"></div>
 
   <!-- Tombol toggle sidebar -->
   <button class="sidebar-toggle" onclick="toggleSidebar()" id="toggleBtn">☰</button>
 
-  <!-- Sidebar -->
-<div class="sidebar hide-sidebar" id="sidebar">
-  <button class="close-sidebar" onclick="toggleSidebar()">✖</button>
-  <h2 class="sidebar-title">☰ Menu</h2>
-
-  <a href="dashboard.html"><span class="menu-icon">🏠</span> Home</a>
-
-  <!-- Tombol All yang bisa toggle -->
-  <a href="#" onclick="toggleAllMenu(event)"><span class="menu-icon">📂</span> All</a>
-  <div class="submenu" id="all-submenu">
-    <a href="dltiktok.html">📥 Downloader</a>
-  </div>
-
-  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
-  <button class="delete-account-btn" onclick="deleteAccount()">🗑️ Delete Account</button>
-</div>
-
-
-
   <!-- Konten Utama -->
-  <div class="main-content expand-content" id="mainContent">
-    <div class="profile-card">
-      <div class="profile-info">
-        <h3>Halaman All About Rul</h3>
-        <p>Ini adalah halaman eksperimen buat menampilkan konten khusus Rul, bisa artikel, catatan, atau ide keren lainnya 😎</p>
-      </div>
+  <div class="main-content" id="mainContent">
+    <div class="intro-box">
+      <p>Ini adalah halaman eksperimen buat menampilkan konten khusus Rul, bisa artikel, catatan, atau ide keren lainnya 😎</p>
+    </div>
+
+    <div class="story-text">
+      <h3>Stay My Story</h3>
+      web Hasil Kegabutanku Note:
+
+      project ini di buat oleh satu orang ("Fahruul"), Dan Di Bantu Dengan Ai ("Chatgpt")
+
+      Story:
+      Saya adalah seorang mahasiswa yang duduk di bangku kelas 10 (saat Saya membuat ini), saya tahu saya tidak pandai,
+      coding, bahkan gk tau sedikitpun, saya hanya tau remake sedikit, itu saya pelajari secara otodidak. saya sangat tertarik dengan coding, karena bagi saya dg coding saya bisa melampiaskan imajinasi saya baik secara sad :) atau apapun itu hehe. jadi jangan ejek saya jika saya sedikit alay, ada sadnya. terimakasihh sudah membaca ini.
+
+      saya mohon maaf jika databasenya masih pakai local storage, karena saya tidak memiliki biaya. mau mencari investor,
+      saya tidak yakin web ini akan berkembang dg kemampuan coding saya yang masih kekanakan ini. mungkin saya harus sekolah jurusan IT atau saya akan terus belajar secara otodidak. saya tidak tahu apa yang akan terjadi di masa depan, tapi saya yakin saya akan, jika saya berusaha keras pasti saya akan mencapai sesuatu yang selalu saya impikan.
+
+      Apa Tujuan Kamu Membuat Ini, Ini Web Apa?:
+      Ini adalah web pelampiasan emosi saya. dan saya ingin menciptakan web ini untuk memahami perasaan mereka.
+      aku ingin membuat web ini jadi menenangkan mereka dll, serta web ini adalah tempat dimana mereka dapat menemukan
+      apa yang selama ini mereka cari. saya tidak tahu harus berkata apa, intinya saya ingin menciptakan web impian semua orang.
+
+      thanks for reading sejauh ini hehe
+
+      Support Saya Dengan Donate kecil yang sangat berharga dan follow my sosmed.
+      My All Sosmed: https://linktr.ee/T.i.g.e.r.S.t.o.r.e
+      Need helping / request: fahrulintelejen@gmail.com
+
+      ©FAhrul 2024, ©The Web 2025
     </div>
   </div>
 

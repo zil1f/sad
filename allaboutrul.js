@@ -1,21 +1,22 @@
 // Fungsi buka-tutup sidebar
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
-  const mainContent = document.getElementById("mainContent");
   const toggleBtn = document.getElementById("toggleBtn");
+  const overlay = document.getElementById("overlay");
 
   const isHidden = sidebar.classList.contains("hide-sidebar");
 
   if (isHidden) {
     sidebar.classList.remove("hide-sidebar");
-    mainContent.classList.remove("expand-content");
     toggleBtn.style.display = "none";
+    overlay.style.display = "block";
   } else {
     sidebar.classList.add("hide-sidebar");
-    mainContent.classList.add("expand-content");
     toggleBtn.style.display = "block";
+    overlay.style.display = "none";
   }
 }
+
 
 // Toggle submenu "All"
 function toggleAllMenu(event) {
@@ -66,4 +67,5 @@ window.onload = function () {
   } else {
     toggleBtn.style.display = "none";
   }
-};
+}
+
