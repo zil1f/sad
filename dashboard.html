@@ -16,28 +16,28 @@
   <button class="close-sidebar" onclick="toggleSidebar()">✖</button>
   <h2 class="sidebar-title">☰ Menu</h2>
 
-  <a href="#"><span class="menu-icon">🏠</span> Home</a>
+  <a href="#"><span class="menu-icon">🏠</span>Rumah</a>
 
   <div class="sidebar-group">
-    <a href="#" onclick="toggleSubmenu(event)"><span class="menu-icon">⚙️</span> Settings</a>
+    <a href="#" onclick="toggleSubmenu(event)"><span class="menu-icon">⚙️</span>Pengaturan</a>
     <div class="submenu" id="settings-submenu">
-      <a href="*" onclick="toggleSubacount(event)"><span class="menu-icon">👮</span>Acount</a> 
+      <a href="*" onclick="toggleSubacount(event)"><span class="menu-icon">👮</span>Akun</a> 
     
    <div class="subacount" id="acount-subacount">
-  <a href="*" onclick="changeUsername()">📝 Ganti Username</a>
-  <a href="*" onclick="changeEmail()">✉️ anti Email</a>
+  <a href="*" onclick="changeUsername()">📝 Ganti Nama Pengguna</a>
+  <a href="*" onclick="changeEmail()">✉️ Ganti Email</a>
   <a href="*" onclick="resetPassword()">🔒 Reset Sandi</a>
 </div>
 </div>
                                       
-  <a href="#" onclick="toggleSubdebar(event)"><span class="menu-icon">🧪</span>All About Rul</a>
+  <a href="#" onclick="toggleSubdebar(event)"><span class="menu-icon">🧪</span>Semua Tentang Rul</a>
 <div class="subdebar" id="debar-subdebar">
- <a href="allaboutrul.html">Unlock</a>
+ <a href="allaboutrul.html">🔐🗝️ Buka?</a>
 </div>
 </div>
     
-  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
-  <button class="delete-account-btn" onclick="deleteAccount()">🗑️ Delete Account</button>
+  <button class="logout-btn" onclick="logout()">🚪 Keluar</button>
+  <button class="delete-account-btn" onclick="deleteAccount()">🗑️ Hapus Akun</button>
 </div>
 
 
@@ -46,10 +46,10 @@
     <div class="profile-card">
       <img src="https://via.placeholder.com/70" alt="Foto Profil" id="profilePic">
       <div class="profile-info">
-        <h3 id="username">User</h3>
-        <button class="bg-btn" onclick="changeBackground()">Change Background</button>
+        <h3 id="username">Nama</h3>
+        <button class="bg-btn" onclick="changeBackground()">Ganti Background</button>
         <input type="file" id="uploadPhoto" accept="image/*" style="display: none;" onchange="uploadProfilePicture(event)">
-        <button class="upload-btn" onclick="document.getElementById('uploadPhoto').click();">Change Picture</button>
+        <button class="upload-btn" onclick="document.getElementById('uploadPhoto').click();">Ganti Foto Profil</button>
       </div>
     </div>
   </div>
