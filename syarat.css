@@ -6,7 +6,7 @@
 }
 
 body {
-    background: url('https://files.catbox.moe/dz7jjg.jpg') no-repeat center center/cover;
+    background: url('') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +30,7 @@ body {
 }
 
 h2 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     position: relative;
     display: inline-block;
     padding: 10px 20px;
@@ -60,7 +60,7 @@ h2::before {
 }
 
 p {
-    font-size: 16px;
+    font-size: 15px;
     margin-bottom: 10px;
     text-align: left;
 }
@@ -86,11 +86,15 @@ p {
 }
 
 .music-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: white;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 20px;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
 }
+
