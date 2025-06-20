@@ -6,7 +6,10 @@
 }
 
 body {
-    background: url('https://files.catbox.moe/cxrpaj.png') no-repeat center center/cover;
+    background: url('https://files.catbox.moe/t5jge7.png') no-repeat center center/cover;
+}
+    
+body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,6 +32,26 @@ body {
     position: relative;
 }
 
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid blueviolet;
+    border-radius: 10px;
+    animation: borderMove 3s linear infinite;
+}
+
+@keyframes borderMove {
+    0% { clip-path: inset(0% 100% 0% 0%); }
+    25% { clip-path: inset(0% 0% 0% 0%); }
+    50% { clip-path: inset(0% 0% 100% 0%); }
+    75% { clip-path: inset(0% 0% 0% 100%); }
+    100% { clip-path: inset(0% 100% 0% 0%); }
+}
+
 h2 {
     margin-bottom: 20px;
     position: relative;
@@ -47,6 +70,36 @@ h2::before {
     width: 100%;
     height: 100%;
     border: 3px solid yellow;
+    border-radius: 10px;
+    animation: borderMove 3s linear infinite;
+}
+
+@keyframes borderMove {
+    0% { clip-path: inset(0% 100% 0% 0%); }
+    25% { clip-path: inset(0% 0% 0% 0%); }
+    50% { clip-path: inset(0% 0% 100% 0%); }
+    75% { clip-path: inset(0% 0% 0% 100%); }
+    100% { clip-path: inset(0% 100% 0% 0%); }
+}
+
+h3 {
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px ;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h3::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgb(202, 4, 4);
     border-radius: 10px;
     animation: borderMove 3s linear infinite;
 }
@@ -97,4 +150,3 @@ p {
   border-radius: 50%;
   cursor: pointer;
 }
-
