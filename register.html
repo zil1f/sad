@@ -9,7 +9,11 @@
 <body>
 
 <div class="container">
-  <h2>Daftar</h2>
+  <h2 class="multi-lang">
+    <span lang="id">Daftar</span>
+    <span lang="en" style="display:none;">Register</span>
+  </h2>
+
   <form id="register-form">
     <div class="input-box">
       <input type="text" id="register-username" placeholder="Username" required oninput="checkRegisterInput()">
@@ -29,12 +33,36 @@
       </label>
     </div>
 
-    <button type="submit" class="btn" id="register-btn" disabled>Daftar</button>
-    <p class="switch" onclick="window.location.href='index.html'">Sudah punya akun? Masuk</p>
+    <button type="submit" class="btn multi-lang" id="register-btn" disabled>
+      <span lang="id">Daftar</span>
+      <span lang="en" style="display:none;">Register</span>
+    </button>
+
+    <p class="switch multi-lang" onclick="window.location.href='index.html'">
+      <span lang="id">Sudah punya akun? Masuk</span>
+      <span lang="en" style="display:none;">Already have an account? Login</span>
+    </p>
   </form>
 </div>
 
 <div id="toast" class="toast"></div>
+
+<script>
+  // Deteksi bahasa browser
+  window.addEventListener("DOMContentLoaded", () => {
+    const lang = navigator.language || navigator.userLanguage;
+    const isEnglish = lang.startsWith("en");
+
+    document.querySelectorAll(".multi-lang").forEach(el => {
+      const idText = el.querySelector('[lang="id"]');
+      const enText = el.querySelector('[lang="en"]');
+      if (idText && enText) {
+        idText.style.display = isEnglish ? "none" : "inline";
+        enText.style.display = isEnglish ? "inline" : "none";
+      }
+    });
+  });
+</script>
 
 <script src="register.js"></script>
 </body>
