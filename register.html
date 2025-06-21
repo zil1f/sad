@@ -11,7 +11,7 @@
 <div class="container">
   <h2 class="multi-lang">
     <span lang="id">Daftar</span>
-    <span lang="en" style="display:none;">Register</span>
+    <span lang="en" style="display: none;">Register</span>
   </h2>
 
   <form id="register-form">
@@ -26,21 +26,22 @@
       <span class="toggle-btn" onclick="toggleVisibility('register-password')">👁</span>
     </div>
 
-    <div class="checkbox-container">
+    <div class="checkbox-container multi-lang">
       <input type="checkbox" id="agreeTerms" onclick="checkRegisterInput()">
       <label for="agreeTerms">
-        Saya setuju dengan <a href="syarat.html" target="_blank">Syarat dan Ketentuan</a>
+        <span lang="id">Saya setuju dengan <a href="syarat.html" target="_blank">Syarat dan Ketentuan</a></span>
+        <span lang="en" style="display: none;">I agree to the <a href="syarat.html" target="_blank">Terms and Conditions</a></span>
       </label>
     </div>
 
     <button type="submit" class="btn multi-lang" id="register-btn" disabled>
       <span lang="id">Daftar</span>
-      <span lang="en" style="display:none;">Register</span>
+      <span lang="en" style="display: none;">Register</span>
     </button>
 
     <p class="switch multi-lang" onclick="window.location.href='index.html'">
       <span lang="id">Sudah punya akun? Masuk</span>
-      <span lang="en" style="display:none;">Already have an account? Login</span>
+      <span lang="en" style="display: none;">Already have an account? Login</span>
     </p>
   </form>
 </div>
@@ -48,7 +49,7 @@
 <div id="toast" class="toast"></div>
 
 <script>
-  // Deteksi bahasa browser
+  // Deteksi bahasa browser, lalu swap teks ID/EN
   window.addEventListener("DOMContentLoaded", () => {
     const lang = navigator.language || navigator.userLanguage;
     const isEnglish = lang.startsWith("en");
