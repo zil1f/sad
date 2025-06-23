@@ -82,7 +82,7 @@ function changeDisplayName() {
 
   user.displayName = newName;
   updateUser();
-  document.getElementById("username").textContent = newName;
+  document.getElementById("username").innerHTML = `${newName} <span onclick="changeDisplayName()" style="cursor:pointer;" title="Edit Nama">✏️</span>`;
 }
 
 function changeEmail() {
@@ -141,7 +141,7 @@ function updateUser() {
 
 window.onload = function () {
   const displayName = user.displayName || user.username;
-  document.getElementById("username").textContent = displayName;
+  document.getElementById("username").innerHTML = `${displayName} <span onclick="changeDisplayName()" style="cursor:pointer;" title="Edit Nama">✏️</span>`;
   document.getElementById("user-email").textContent = user.email || "-";
   document.getElementById("user-secret").textContent = user.secretCode || "-";
 
