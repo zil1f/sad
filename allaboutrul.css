@@ -7,6 +7,10 @@
 }
 
 body {
+    background: url('https://files.catbox.moe/cxrpaj.png') no-repeat center center/cover;
+}
+
+body {
   min-height: 100vh;
   background-color: #f4f4f4;
 }
@@ -134,13 +138,38 @@ body {
 }
 
 .intro-box {
-  background: white;
-  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: rgb(255, 255, 255);
+  padding: 10px 20px;
   margin: 30px 270px 0 270px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   line-height: 1.6;
-  font-size: 15px;
+  font-size: 18px;
+}
+
+.intro-box::before {
+  content: "";
+   position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgb(33, 255, 4);
+    border-radius: 10px;
+    animation: borderMove 3s linear infinite;
+}
+
+@keyframes borderMove {
+    0% { clip-path: inset(0% 100% 0% 0%); }
+    25% { clip-path: inset(0% 0% 0% 0%); }
+    50% { clip-path: inset(0% 0% 100% 0%); }
+    75% { clip-path: inset(0% 0% 0% 100%); }
+    100% { clip-path: inset(0% 100% 0% 0%); }
 }
 
 .story-text {
@@ -184,6 +213,45 @@ body {
 
   .intro-box,
   .story-text {
+    margin: 20px;
+  }
+}
+
+.photo-container {
+  background: white;
+  margin: 40px 40px 60px 40px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.photo-container h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.photo-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.photo-list img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.photo-list img:hover {
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .photo-container {
     margin: 20px;
   }
 }

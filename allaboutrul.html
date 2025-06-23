@@ -12,13 +12,13 @@
   <div class="sidebar hide-sidebar" id="sidebar">
     <button class="close-sidebar" onclick="toggleSidebar()">✖</button>
     <h2 class="sidebar-title">☰ Menu</h2>
-    <a href="dashboard.html"><span class="menu-icon">🏠</span> Home</a>
-    <a href="#" onclick="toggleAllMenu(event)"><span class="menu-icon">📂</span> All</a>
+    <a href="dashboard.html"><span class="menu-icon">🏠</span>Rumah</a>
+    <a href="#" onclick="toggleAllMenu(event)"><span class="menu-icon">📂</span>Semua</a>
     <div class="submenu" id="all-submenu">
-      <a href="dltiktok.html">📥 Downloader</a>
+      <a href="downloaderlist.html">📥 Pengunduh</a>
     </div>
-    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
-    <button class="delete-account-btn" onclick="deleteAccount()">🗑️ Delete Account</button>
+    <button class="logout-btn" onclick="logout()">🚪 Keluar</button>
+    <button class="delete-account-btn" onclick="deleteAccount()">🗑️ Hapus Akun</button>
   </div>
 
   <!-- Overlay Blur -->
@@ -29,10 +29,13 @@
 
   <!-- Konten Utama -->
   <div class="main-content" id="mainContent">
+
+    <!-- Intro -->
     <div class="intro-box">
       <p>Ini adalah halaman eksperimen buat menampilkan konten khusus Rul, bisa artikel, catatan, atau ide keren lainnya 😎</p>
     </div>
 
+    <!-- Cerita -->
     <div class="story-text">
       <h3>Stay My Story</h3>
       web Hasil Kegabutanku Note:
@@ -59,7 +62,22 @@
 
       ©FAhrul 2024, ©The Web 2025
     </div>
+
+    <!-- Galeri Foto -->
+    <div class="photo-container">
+      <h3>Galeri Rul</h3>
+      <div class="photo-list">
+        <img src="https://files.catbox.moe/cxrpaj.png" alt="Kucing 1">
+        <img src="https://placekitten.com/401/250" alt="Kucing 2">
+        <img src="https://placekitten.com/402/250" alt="Kucing 3">
+      </div>
+    </div>
+
   </div>
+
+   <audio id="bg-music" autoplay muted loop>
+  <source src="https://files.catbox.moe/mr6thj.mp3" type="audio/mp3">
+   </audio>
 
   <script src="allaboutrul.js"></script>
 </body>
