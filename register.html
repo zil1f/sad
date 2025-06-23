@@ -9,61 +9,31 @@
 <body>
 
 <div class="container">
-  <h2 class="multi-lang">
-    <span lang="id">Daftar</span>
-    <span lang="en" style="display: none;">Register</span>
-  </h2>
-
+  <h2>Daftar Akun</h2>
   <form id="register-form">
     <div class="input-box">
       <input type="text" id="register-username" placeholder="Username" required oninput="checkRegisterInput()">
     </div>
     <div class="input-box">
-      <input type="email" id="register-email" placeholder="Email atau Nomor Telepon" required oninput="checkRegisterInput()">
+      <input type="email" id="register-email" placeholder="Email" required oninput="checkRegisterInput()">
     </div>
     <div class="input-box">
       <input type="password" id="register-password" placeholder="Password" required oninput="checkRegisterInput()">
       <span class="toggle-btn" onclick="toggleVisibility('register-password')">👁</span>
     </div>
 
-    <div class="checkbox-container multi-lang">
+    <div class="checkbox-container">
       <input type="checkbox" id="agreeTerms" onclick="checkRegisterInput()">
-      <label for="agreeTerms">
-        <span lang="id">Saya setuju dengan <a href="syarat.html" target="_blank">Syarat dan Ketentuan</a></span>
-        <span lang="en" style="display: none;">I agree to the <a href="syarat.html" target="_blank">Terms and Conditions</a></span>
-      </label>
+      <label for="agreeTerms">Saya setuju dengan <a href="syarat.html" target="_blank">Syarat & Ketentuan</a></label>
     </div>
 
-    <button type="submit" class="btn multi-lang" id="register-btn" disabled>
-      <span lang="id">Daftar</span>
-      <span lang="en" style="display: none;">Register</span>
-    </button>
+    <button type="submit" class="btn" id="register-btn" disabled>Daftar</button>
 
-    <p class="switch multi-lang" onclick="window.location.href='index.html'">
-      <span lang="id">Sudah punya akun? Masuk</span>
-      <span lang="en" style="display: none;">Already have an account? Login</span>
-    </p>
+    <p class="switch" onclick="window.location.href='index.html'">Sudah punya akun? Masuk</p>
   </form>
 </div>
 
 <div id="toast" class="toast"></div>
-
-<script>
-  // Deteksi bahasa browser, lalu swap teks ID/EN
-  window.addEventListener("DOMContentLoaded", () => {
-    const lang = navigator.language || navigator.userLanguage;
-    const isEnglish = lang.startsWith("en");
-
-    document.querySelectorAll(".multi-lang").forEach(el => {
-      const idText = el.querySelector('[lang="id"]');
-      const enText = el.querySelector('[lang="en"]');
-      if (idText && enText) {
-        idText.style.display = isEnglish ? "none" : "inline";
-        enText.style.display = isEnglish ? "inline" : "none";
-      }
-    });
-  });
-</script>
 
 <script src="register.js"></script>
 </body>

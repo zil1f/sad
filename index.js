@@ -3,45 +3,31 @@ function checkInput() {
   const password = document.getElementById("login-password").value.trim();
   const loginBtn = document.getElementById("login-btn");
 
-  if (username && password) {
-    loginBtn.classList.add("active");
-    loginBtn.disabled = false;
-  } else {
-    loginBtn.classList.remove("active");
-    loginBtn.disabled = true;
-  }
+  loginBtn.disabled = !(username && password);
+  loginBtn.classList.toggle("active", !loginBtn.disabled);
 }
 
 function login() {
   const usernameInput = document.getElementById("login-username");
   const passwordInput = document.getElementById("login-password");
   const loginBtn = document.getElementById("login-btn");
-  const storedUser = localStorage.getItem("user");
 
-  if (!storedUser) {
-    showToast("Belum ada akun terdaftar!", false);
-    return;
-  }
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const foundUser = users.find(user =>
+    user.username === usernameInput.value.trim() &&
+    user.password === passwordInput.value.trim()
+  );
 
-  const userData = JSON.parse(storedUser);
   loginBtn.innerText = "Masuk...";
   loginBtn.disabled = true;
 
   setTimeout(() => {
-    if (
-      usernameInput.value === userData.username &&
-      passwordInput.value === userData.password
-    ) {
+    if (foundUser) {
       localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("currentUser", foundUser.id);
       showToast("Login berhasil!", true);
 
-      setTimeout(() => {
-        showToast("Mengalihkan ke dashboard...", true);
-      }, 1000);
-
-      setTimeout(() => {
-        window.location.href = "dashboard.html";
-      }, 2500);
+      setTimeout(() => window.location.href = "dashboard.html", 2000);
     } else {
       showToast("Username atau password salah!", false);
       usernameInput.classList.add("shake");
@@ -73,9 +59,7 @@ function showToast(message, success = true) {
   toast.innerText = message;
   toast.style.background = success ? "#28a745" : "#dc3545";
   toast.classList.add("show");
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3000);
+  setTimeout(() => toast.classList.remove("show"), 3000);
 }
 
 document.getElementById("login-form").addEventListener("submit", function (e) {

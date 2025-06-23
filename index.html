@@ -4,29 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="index.css" />
 </head>
 <body>
 
-<div class="container">
-  <h2>Login</h2>
-  <form id="login-form">
-    <div class="input-box">
-      <input type="text" id="login-username" placeholder="Masukkan Username" required oninput="checkInput()">
-    </div>
-    <div class="input-box">
-      <input type="password" id="login-password" placeholder="Masukkan Password" required oninput="checkInput()">
-      <span class="toggle-btn" onclick="toggleVisibility('login-password')">👁️</span>
-    </div>
-    <button type="submit" class="btn" id="login-btn" disabled>Masuk</button>
-    <p class="switch" onclick="window.location.href='register.html'">Belum punya akun? Silahkan Daftar</p>
-    <p class="reset-link" onclick="window.location.href='reset.html'">Lupa password?</p>
-  </form>
-</div>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="login-form">
+      <div class="input-box">
+        <input type="text" id="login-username" placeholder="Masukkan Username" required oninput="checkInput()">
+      </div>
+      <div class="input-box">
+        <input type="password" id="login-password" placeholder="Masukkan Password" required oninput="checkInput()">
+        <span class="toggle-btn" onclick="toggleVisibility('login-password')">👁️</span>
+      </div>
+      <button type="submit" class="btn" id="login-btn" disabled>Masuk</button>
+      <p class="switch" onclick="window.location.href='register.html'">Belum punya akun? Daftar</p>
+      <p class="reset-link" onclick="window.location.href='reset.html'">Lupa password?</p>
+    </form>
+  </div>
 
-<!-- Toast -->
-<div id="toast" class="toast"></div>
+  <div id="toast" class="toast"></div>
 
-<script src="index.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>

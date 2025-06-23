@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
 
-  <!-- Tombol toggle sidebar -->
-  <button class="sidebar-toggle" onclick="toggleSidebar()" id="toggleBtn">☰</button>
+  <!-- Tombol Toggle Sidebar -->
+  <button class="sidebar-toggle" id="toggleBtn" onclick="toggleSidebar()">☰</button>
 
   <!-- Sidebar -->
-<div class="sidebar hide-sidebar" id="sidebar">
-  <button class="close-sidebar" onclick="toggleSidebar()">✖</button>
-  <h2 class="sidebar-title">☰ Menu</h2>
+  <div class="sidebar" id="sidebar">
+    <button class="close-sidebar" onclick="toggleSidebar()">✖</button>
+    <h2 class="sidebar-title">☰ Menu</h2>
 
-  <a href="#"><span class="menu-icon">🏠</span> Home</a>
+    <a href="#"><span class="menu-icon">🏠</span> Home</a>
 
-  <div class="sidebar-group">
-    <a href="#" onclick="toggleSubmenu(event)"><span class="menu-icon">⚙️</span> Settings</a>
-    <div class="submenu" id="settings-submenu">
-      <a href="*" onclick="toggleSubacount(event)"><span class="menu-icon">👮</span>Acount</a> 
-    
-   <div class="subacount" id="acount-subacount">
-  <a href="*" onclick="changeUsername()">📝 Ganti Username</a>
-  <a href="*" onclick="changeEmail()">✉️ anti Email</a>
-  <a href="*" onclick="resetPassword()">🔒 Reset Sandi</a>
-</div>
-</div>
-                                      
-  <a href="#" onclick="toggleSubdebar(event)"><span class="menu-icon">🧪</span>All About Rul</a>
-<div class="subdebar" id="debar-subdebar">
- <a href="allaboutrul.html">Unlock</a>
-</div>
-</div>
-    
-  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
-  <button class="delete-account-btn" onclick="deleteAccount()">🗑️ Delete Account</button>
-</div>
+    <div class="sidebar-group">
+      <a href="#" onclick="toggleSubmenu(event)"><span class="menu-icon">⚙️</span> Settings</a>
+      <div class="submenu" id="settings-submenu">
+        <a href="#" onclick="toggleSubacount(event)"><span class="menu-icon">👤</span> Akun</a>
+        <div class="subacount" id="acount-subacount">
+          <a href="#" onclick="changeUsername()">📝 Ganti Username</a>
+          <a href="#" onclick="changeEmail()">✉️ Ganti Email</a>
+          <a href="#" onclick="resetPassword()">🔒 Reset Password</a>
+        </div>
+      </div>
 
+      <a href="#" onclick="toggleSubdebar(event)"><span class="menu-icon">ℹ️</span> Tentang</a>
+      <div class="subdebar" id="debar-subdebar">
+        <a href="allaboutrul.html">All About Rul</a>
+      </div>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+    <button class="delete-account-btn" onclick="deleteAccount()">🗑️ Hapus Akun</button>
+  </div>
 
   <!-- Konten Utama -->
-  <div class="main-content expand-content" id="mainContent">
+  <div class="main-content" id="mainContent">
     <div class="profile-card">
       <img src="https://via.placeholder.com/70" alt="Foto Profil" id="profilePic">
       <div class="profile-info">
         <h3 id="username">User</h3>
-        <button class="bg-btn" onclick="changeBackground()">Change Background</button>
+        <p>Email: <span id="user-email">-</span></p>
+        <p>Kode Reset: <span id="user-secret">-</span> <button onclick="copySecret()" class="edit-btn">📋</button></p>
+        <p>Gabung sejak: <span id="user-joined">-</span></p>
+        <button class="bg-btn" onclick="changeBackground()">Ganti Background</button>
         <input type="file" id="uploadPhoto" accept="image/*" style="display: none;" onchange="uploadProfilePicture(event)">
-        <button class="upload-btn" onclick="document.getElementById('uploadPhoto').click();">Change Picture</button>
+        <button class="upload-btn" onclick="document.getElementById('uploadPhoto').click();">Ganti Foto</button>
       </div>
     </div>
   </div>
