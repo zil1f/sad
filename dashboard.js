@@ -60,15 +60,16 @@ function deleteAccount() {
 }
 
 function changeUsername() {
-  const newUsername = prompt("Username baru:");
+  const newUsername = prompt("Masukkan username login baru:");
+
   if (!newUsername) return;
 
   if (/\s/.test(newUsername) || /[A-Z]/.test(newUsername)) {
-    return alert("Tanpa spasi & huruf kapital.");
+    return alert("Username tidak boleh pakai spasi atau huruf besar.");
   }
 
-  const banned = ["kontol", "memek", "anjing"];
-  if (banned.some(word => newUsername.includes(word))) {
+  const forbidden = ["kontol", "memek", "anjing"];
+  if (forbidden.some(word => newUsername.includes(word))) {
     return alert("Username tidak pantas.");
   }
 
@@ -78,7 +79,7 @@ function changeUsername() {
 
   user.username = newUsername;
   updateUser();
-  alert("Berhasil ganti username. Login ulang.");
+  alert("Username berhasil diubah. Silakan login ulang.");
   logout();
 }
 
@@ -133,6 +134,16 @@ function copySecret() {
 function updateUser() {
   users[userIndex] = user;
   localStorage.setItem("users", JSON.stringify(users));
+}
+
+function changeDisplayName() {
+  const newName = prompt("Masukkan nama tampilan baru:");
+
+  if (!newName) return;
+
+  user.displayName = newName;
+  updateUser();
+  document.getElementById("username").textContent = newName;
 }
 
 window.onload = function () {
