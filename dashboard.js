@@ -19,7 +19,6 @@ function toggleSidebar() {
 
   sidebar.classList.toggle("hide-sidebar");
   mainContent.classList.toggle("expand-content");
-
   toggleBtn.style.display = sidebar.classList.contains("hide-sidebar") ? "block" : "none";
 }
 
@@ -61,7 +60,6 @@ function deleteAccount() {
 
 function changeUsername() {
   const newUsername = prompt("Masukkan username login baru:");
-
   if (!newUsername) return;
 
   if (/\s/.test(newUsername) || /[A-Z]/.test(newUsername)) {
@@ -69,13 +67,8 @@ function changeUsername() {
   }
 
   const forbidden = ["kontol", "memek", "anjing"];
-  if (forbidden.some(word => newUsername.includes(word))) {
-    return alert("Username tidak pantas.");
-  }
-
-  if (users.some(u => u.username === newUsername)) {
-    return alert("Username sudah digunakan.");
-  }
+  if (forbidden.some(w => newUsername.includes(w))) return alert("Username tidak pantas.");
+  if (users.some(u => u.username === newUsername)) return alert("Username sudah digunakan.");
 
   user.username = newUsername;
   updateUser();
@@ -83,12 +76,22 @@ function changeUsername() {
   logout();
 }
 
+function changeDisplayName() {
+  const newName = prompt("Masukkan nama tampilan baru:");
+  if (!newName) return;
+
+  user.displayName = newName;
+  updateUser();
+  document.getElementById("username").textContent = newName;
+}
+
 function changeEmail() {
   const newEmail = prompt("Email baru:");
   if (!newEmail) return;
+
   user.email = newEmail;
   updateUser();
-  alert("Email diubah. Login ulang.");
+  alert("Email berhasil diubah. Silakan login ulang.");
   logout();
 }
 
@@ -134,16 +137,6 @@ function copySecret() {
 function updateUser() {
   users[userIndex] = user;
   localStorage.setItem("users", JSON.stringify(users));
-}
-
-function changeDisplayName() {
-  const newName = prompt("Masukkan nama tampilan baru:");
-
-  if (!newName) return;
-
-  user.displayName = newName;
-  updateUser();
-  document.getElementById("username").textContent = newName;
 }
 
 window.onload = function () {
