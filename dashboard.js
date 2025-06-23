@@ -141,7 +141,7 @@ function updateUser() {
 
 window.onload = function () {
   const displayName = user.displayName || user.username;
-  document.getElementById("username").innerHTML = `${displayName} <span onclick="changeDisplayName()" style="cursor:pointer;" title="Edit Nama">✏️</span>`;
+document.getElementById("username").innerHTML = `${displayName} <span onclick="changeDisplayName()" style="cursor:pointer;" title="Ganti nama tampilan">✏️</span>`;
   document.getElementById("user-email").textContent = user.email || "-";
   document.getElementById("user-secret").textContent = user.secretCode || "-";
 
