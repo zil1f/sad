@@ -147,7 +147,8 @@ function changeDisplayName() {
 }
 
 window.onload = function () {
-  document.getElementById("username").textContent = user.username;
+  const displayName = user.displayName || user.username;
+  document.getElementById("username").textContent = displayName;
   document.getElementById("user-email").textContent = user.email || "-";
   document.getElementById("user-secret").textContent = user.secretCode || "-";
 
