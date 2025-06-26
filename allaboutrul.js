@@ -1,3 +1,7 @@
+if (localStorage.getItem("isLoggedIn") !== "true") {
+  window.location.href = "index.html";
+}
+
 // Fungsi buka-tutup sidebar
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
