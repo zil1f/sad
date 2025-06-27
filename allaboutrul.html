@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>All About Rul</title>
-  <link rel="stylesheet" href="css/allaboutrul.css">
+  <link rel="stylesheet" href="allaboutrul.css">
 </head>
 <body>
 
@@ -31,18 +31,18 @@
   <div class="main-content" id="mainContent">
 
     <!-- Intro -->
-   <div class="intro-box-wrapper">
-  <div class="intro-box">
-    <p>Ini adalah halaman eksperimen buat menampilkan konten khusus Rul...</p>
-  </div>
-</div>
+    <div class="intro-box-wrapper">
+      <div class="intro-box">
+        <p>Ini adalah halaman eksperimen buat menampilkan konten khusus Rul...</p>
+      </div>
+    </div>
 
     <!-- Cerita -->
     <div class="story-text">
       <h3>Stay My Story</h3>
       web Hasil Kegabutanku Note:
 
-     Dengan Donate kecil yang sangat berharga dan follow my sosmed.
+      Dengan Donate kecil yang sangat berharga dan follow my sosmed.
       My All Sosmed: https://linktr.ee/T.i.g.e.r.S.t.o.r.e
       Need helping / request: fahrulintelejen@gmail.com
 
@@ -59,11 +59,29 @@
       </div>
     </div>
 
+   <div style="text-align: center; margin-top: 30px;">
+  <button id="toggleVideoBtn" onclick="toggleVideo()" style="background: none; border: none; cursor: pointer;">
+    <svg id="arrowIcon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+</div>
+
+<!-- Kontainer Video -->
+<div id="videoSection" style="display: none; margin: 20px auto; max-width: 700px;" class="video-container">
+  <h3 style="text-align: center;">Video Tentang Rul</h3>
+  <video id="videoRul" controls style="width: 100%; border-radius: 10px;">
+    <source src="fahrul.mp4" type="video/mp4">
+    Browser kamu tidak mendukung pemutar video.
+  </video>
+</div>
+
   </div>
 
-   <audio id="bg-music" autoplay muted loop>
-  <source src="https://files.catbox.moe/mr6thj.mp3" type="audio/mp3">
-   </audio>
+  <!-- Musik latar -->
+  <audio id="bg-music" autoplay muted loop>
+    <source src="https://files.catbox.moe/mr6thj.mp3" type="audio/mp3">
+  </audio>
 
   <script src="allaboutrul.js"></script>
 </body>

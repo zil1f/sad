@@ -1,6 +1,4 @@
-if (localStorage.getItem("isLoggedIn") !== "true") {
-  window.location.href = "index.html";
-}
+
 
 // Fungsi buka-tutup sidebar
 function toggleSidebar() {
@@ -92,4 +90,39 @@ window.addEventListener("load", () => {
     console.log("Autoplay ditolak. Tunggu interaksi user.");
   });
 });
+
+function toggleVideo() {
+  const section = document.getElementById("videoSection");
+  const icon = document.getElementById("arrowIcon");
+  const video = document.getElementById("videoRul");
+  const music = document.getElementById("bg-music");
+
+  if (section.style.display === "none") {
+    // Tampilkan video
+    section.style.display = "block";
+    section.classList.add("show");
+
+    // Putar video dan hentikan musik
+    video.play();
+    music.pause();
+    music.currentTime = 0;
+
+    // Putar animasi ikon
+    icon.classList.remove("rotate-down");
+    icon.classList.add("rotate-up");
+  } else {
+    // Sembunyikan video
+    section.style.display = "none";
+    section.classList.remove("show");
+
+    // Stop video dan lanjutkan musik
+    video.pause();
+    video.currentTime = 0;
+    music.play();
+
+    // Balikkan ikon
+    icon.classList.remove("rotate-up");
+    icon.classList.add("rotate-down");
+  }
+}
 
