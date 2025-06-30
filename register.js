@@ -5,16 +5,19 @@ function checkRegisterInput() {
   const agreeTerms = document.getElementById("agreeTerms").checked;
   const registerBtn = document.getElementById("register-btn");
 
+  const usernameValid = username.length >= 3 && !/\s/.test(username);
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const passwordValid = password.length >= 6 && /\d/.test(password);
 
-  registerBtn.disabled = !(username && emailValid && passwordValid && agreeTerms);
-  registerBtn.classList.toggle("active", !registerBtn.disabled);
+  const isFormValid = usernameValid && emailValid && passwordValid && agreeTerms;
+
+  registerBtn.disabled = !isFormValid;
+  registerBtn.classList.toggle("active", isFormValid);
 }
 
 function register() {
-  const username = document.getElementById("register-username").value.trim();
-  const email = document.getElementById("register-email").value.trim();
+  const username = document.getElementById("register-username").value.trim().toLowerCase();
+  const email = document.getElementById("register-email").value.trim().toLowerCase();
   const password = document.getElementById("register-password").value.trim();
 
   let users = JSON.parse(localStorage.getItem("users")) || [];
