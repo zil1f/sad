@@ -1,0 +1,131 @@
+body {
+  background: url('https://files.catbox.moe/cxrpaj.png') no-repeat center/cover;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.main-content {
+  padding: 30px;
+}
+
+.admin-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.user-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.delete-user {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-user:hover {
+  background: darkred;
+}
+
+.user-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-user {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-user:hover {
+  background: #0056b3;
+}
+
+.export-btn {
+  display: block;
+  margin: 20px auto 10px auto;
+  padding: 10px 16px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.export-btn:hover {
+  background: darkgreen;
+}
+
+.back-btn {
+  background: #555;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.back-btn:hover {
+  background: #333;
+}
+
+/* Saat masuk (fade + scale in) */
+.fade-scale-in {
+  animation: fadeInGrow 0.5s ease;
+}
+
+@keyframes fadeInGrow {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Saat keluar (slide out to left) */
+.slide-out {
+  animation: slideOutLeft 0.5s forwards;
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}

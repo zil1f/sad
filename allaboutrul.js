@@ -1,95 +1,51 @@
-
-
-// Fungsi buka-tutup sidebar
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
-  const toggleBtn = document.getElementById("toggleBtn");
   const overlay = document.getElementById("overlay");
+  const toggleBtn = document.getElementById("toggleBtn");
 
   const isHidden = sidebar.classList.contains("hide-sidebar");
 
   if (isHidden) {
     sidebar.classList.remove("hide-sidebar");
-    toggleBtn.style.display = "none";
     overlay.style.display = "block";
+    toggleBtn.style.display = "none"; // Sembunyikan tombol ☰ saat sidebar muncul
   } else {
     sidebar.classList.add("hide-sidebar");
-    toggleBtn.style.display = "block";
     overlay.style.display = "none";
+    toggleBtn.style.display = "block"; // Munculkan tombol ☰ saat sidebar disembunyikan
   }
 }
 
-
-// Toggle submenu "All"
-function toggleAllMenu(event) {
-  event.preventDefault();
+function toggleAllMenu(e) {
+  e.preventDefault();
   const submenu = document.getElementById("all-submenu");
   submenu.style.display = submenu.style.display === "block" ? "none" : "block";
 }
 
-// Logout
 function logout() {
+  localStorage.removeItem("isLoggedIn");
+  localStorage.removeItem("currentUser");
   window.location.href = "index.html";
 }
 
-// Delete Account
 function deleteAccount() {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const verify = prompt("Masukkan password untuk menghapus akun:");
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const currentId = localStorage.getItem("currentUser");
+  const index = users.findIndex(u => u.id == currentId);
+  const user = users[index];
 
-  if (!verify) {
-    alert("Verifikasi dibatalkan.");
+  const password = prompt("Masukkan password untuk konfirmasi:");
+  if (!password || password !== user.password) {
+    alert("Password salah.");
     return;
   }
 
-  if (verify !== user.password) {
-    alert("Password salah. Akun tidak dihapus.");
-    return;
-  }
-
-  if (confirm("Apakah Anda yakin ingin menghapus akun? Semua data akan hilang!")) {
-    localStorage.removeItem("user");
-    localStorage.removeItem("username");
-    localStorage.removeItem("profilePicture");
-    localStorage.removeItem("background");
-    localStorage.removeItem("isLoggedIn");
-
-    alert("Akun berhasil dihapus.");
-    window.location.href = "index.html";
+  if (confirm("Yakin ingin menghapus akun ini secara permanen?")) {
+    users.splice(index, 1);
+    localStorage.setItem("users", JSON.stringify(users));
+    logout();
   }
 }
-
-// Tampilkan toggleBtn di awal sesuai status sidebar
-window.onload = function () {
-  const sidebar = document.getElementById("sidebar");
-  const toggleBtn = document.getElementById("toggleBtn");
-
-  if (sidebar.classList.contains("hide-sidebar")) {
-    toggleBtn.style.display = "block";
-  } else {
-    toggleBtn.style.display = "none";
-  }
-}
-
-function toggleMusic() {
-  const music = document.getElementById("bg-music");
-  if (music.paused) {
-    music.muted = false;
-    music.play();
-  } else {
-    music.pause();
-  }
-}
-
-// Unmute dan play saat halaman siap
-window.addEventListener("load", () => {
-  const music = document.getElementById("bg-music");
-  music.muted = false;
-  music.play().catch(() => {
-    // Autoplay ditolak browser
-    console.log("Autoplay ditolak. Tunggu interaksi user.");
-  });
-});
 
 function toggleVideo() {
   const section = document.getElementById("videoSection");
@@ -97,32 +53,64 @@ function toggleVideo() {
   const video = document.getElementById("videoRul");
   const music = document.getElementById("bg-music");
 
-  if (section.style.display === "none") {
-    // Tampilkan video
+  const isHidden = section.style.display === "none";
+
+  if (isHidden) {
     section.style.display = "block";
     section.classList.add("show");
 
-    // Putar video dan hentikan musik
+    video.muted = false;
+    video.volume = 1;
+    video.loop = true;
     video.play();
+
     music.pause();
     music.currentTime = 0;
 
-    // Putar animasi ikon
     icon.classList.remove("rotate-down");
     icon.classList.add("rotate-up");
   } else {
-    // Sembunyikan video
     section.style.display = "none";
     section.classList.remove("show");
 
-    // Stop video dan lanjutkan musik
     video.pause();
     video.currentTime = 0;
+
     music.play();
 
-    // Balikkan ikon
     icon.classList.remove("rotate-up");
     icon.classList.add("rotate-down");
   }
 }
+
+function handleVideoError() {
+  alert("⚠️ Video gagal dimuat. Cek URL atau format file.");
+
+  const section = document.getElementById("videoSection");
+  section.innerHTML = `
+    <div style="text-align:center; padding: 20px; color: red;">
+      ⚠️ Maaf, video tidak dapat ditampilkan.
+    </div>
+  `;
+
+  const icon = document.getElementById("arrowIcon");
+  icon.classList.remove("rotate-up");
+  icon.classList.add("rotate-down");
+}
+
+// Tampilkan link admin hanya jika user adalah admin
+document.addEventListener("DOMContentLoaded", function () {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const currentId = localStorage.getItem("currentUser");
+  const currentUser = users.find(u => u.id == currentId);
+
+  if (currentUser && currentUser.username === "admin") {
+    const sidebar = document.getElementById("sidebar");
+
+    const adminLink = document.createElement("a");
+    adminLink.href = "admin.html";
+    adminLink.innerHTML = `<span class="menu-icon">👑</span>Admin Panel`;
+    sidebar.insertBefore(adminLink, sidebar.querySelector(".logout-btn"));
+  }
+});
 

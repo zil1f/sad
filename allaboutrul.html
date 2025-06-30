@@ -59,28 +59,31 @@
       </div>
     </div>
 
-   <div style="text-align: center; margin-top: 30px;">
-  <button id="toggleVideoBtn" onclick="toggleVideo()" style="background: none; border: none; cursor: pointer;">
-    <svg id="arrowIcon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="6 9 12 15 18 9"></polyline>
-    </svg>
-  </button>
-</div>
+    <!-- Tombol Toggle Video -->
+    <div style="text-align: center; margin-top: 30px;">
+      <button id="toggleVideoBtn" onclick="toggleVideo()" style="background: none; border: none; cursor: pointer;">
+        <svg id="arrowIcon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+    </div>
 
-<!-- Kontainer Video -->
+    <!-- Kontainer Video -->
 <div id="videoSection" style="display: none; margin: 20px auto; max-width: 700px;" class="video-container">
   <h3 style="text-align: center;">Video Tentang Rul</h3>
-  <video id="videoRul" controls style="width: 100%; border-radius: 10px;">
-    <source src="fahrul.mp4" type="video/mp4">
-    Browser kamu tidak mendukung pemutar video.
-  </video>
+ <video id="videoRul" loop playsinline muted style="width: 100%; border-radius: 10px; pointer-events: none;">
+  <source
+    src="fahrul.mp4"
+    type="video/mp4"
+    onerror="handleVideoError()" />
+</video>
 </div>
 
   </div>
 
-  <!-- Musik latar -->
-  <audio id="bg-music" autoplay muted loop>
-    <source src="https://files.catbox.moe/mr6thj.mp3" type="audio/mp3">
+  <!-- Musik Latar -->
+  <audio id="bg-music" autoplay loop>
+    <source src="" type="audio/mp3">
   </audio>
 
   <script src="allaboutrul.js"></script>
