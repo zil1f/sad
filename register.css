@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #0d1117;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Efek garis berputar */
+.container {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container span {
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 6px;
+  background: #2c4766;
+  border-radius: 8px;
+  transform-origin: 140px;
+  transform: scale(2.2) rotate(calc(var(--i) * (360deg / 50)));
+  animation: animateBlink 3s linear infinite;
+  animation-delay: calc(var(--i) * (3s / 50));
+}
+
+@keyframes animateBlink {
+  0% {
+    background: #0ef;
+  }
+  25% {
+    background: #2c4766;
+  }
+}
+
+/* Login box */
+.login-box {
+  position: absolute;
+  width: 360px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 40px 30px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 30px rgba(0, 238, 255, 0.15);
+}
+
+.login-box h2 {
+  text-align: center;
+  color: #0ef;
+  margin-bottom: 30px;
+  font-size: 1.8em;
+}
+
+.input-box {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-box input {
+  width: 100%;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 40px;
+  padding: 0 20px;
+  font-size: 1em;
+  color: #fff;
+  outline: none;
+  backdrop-filter: blur(4px);
+  transition: 0.3s ease;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+}
+
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  font-size: 0.85em;
+  color: #ccc;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+  top: -8px;
+  font-size: 0.7em;
+  background: #0d1117;
+  padding: 0 5px;
+  color: #0ef;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Checkbox & syarat */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #fff;
+  font-size: 0.85em;
+}
+
+.checkbox-container input {
+  margin-right: 8px;
+}
+
+.checkbox-container a {
+  color: #0ef;
+  text-decoration: none;
+}
+.checkbox-container a:hover {
+  text-decoration: underline;
+}
+
+/* Tombol daftar */
+.btn {
+  width: 100%;
+  height: 45px;
+  background: linear-gradient(90deg, #0ef, #02c39a);
+  border: none;
+  border-radius: 40px;
+  font-size: 1em;
+  font-weight: 600;
+  color: #0d1117;
+  cursor: pointer;
+  opacity: 0.5;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.btn.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+/* Pindah ke login */
+.switch {
+  text-align: center;
+  color: #0ef;
+  margin-top: 20px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #0ef;
+  color: #000;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 238, 255, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+  
